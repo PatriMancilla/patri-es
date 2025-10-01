@@ -30,10 +30,12 @@ body {
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
-  background-image: url('src/assets/img/background-cats.jpg');
+  background: url('../assets/img/background-cats.jpg') no-repeat center center;
   color: white;
   background-size: cover;
-  background-position: center;
+    
+  /* referencia para futuro componente. Aquí no funcionan las rutas con alias
+  background: url('@img/background-cats.jpg') no-repeat center cover;*/
 }
 
 h1 {
