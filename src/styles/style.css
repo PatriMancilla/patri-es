@@ -30,13 +30,12 @@ body {
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
-  background: url('@img/background-cats.jpg') no-repeat center cover;
-  
+  background: url('../assets/img/background-cats.jpg') no-repeat center center;
   color: white;
-  /* background-size: center cover;
-  background-image: url('@/assets/img/background-cats.jpg');
-  C:\Users\Patri\Documents\Repositorios\Webs\patri-es\src\assets\img\background-cats.jpg
-  background-position: center; */
+  background-size: cover;
+    
+  /* referencia para futuro componente. Aquí no funcionan las rutas con alias
+  background: url('@img/background-cats.jpg') no-repeat center cover;*/
 }
 
 h1 {
