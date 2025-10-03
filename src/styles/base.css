@@ -1,0 +1,110 @@
+/* Reset básico + tipografía */
+:root {
+  /* Tipografía y legibilidad (reseteado) */
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  -webkit-font-smoothing: antialiased; /* Safari/Chrome en macOS */
+  -moz-osx-font-smoothing: grayscale;  /* Firefox en macOS */
+  text-rendering: optimizeLegibility;  /* mejora el kerning y ligaduras */
+  font-synthesis: none;                /* evita sustitución de fuentes */
+  font-feature-settings: "kern";       /* asegura kerning tipográfico */
+
+  box-sizing: border-box;
+
+  /* Variables de tema (colores) */
+  --color-primary: #00abab;      /* h1 */
+  --color-secondary: #cf7368;    /* h3 */
+    --color-ternary: #fadf90;
+  --color-text: #35f3ea;         /* p */
+  --color-bg: #06012d;           /* fondo oscuro */
+  --color-ul-bg: #066565;
+  --color-ul-text: #9ffded;
+  --color-cv: #fabf8f;
+}
+
+/*  */
+/* Detectar tema claro automáticamente */
+@media (prefers-color-scheme: light) {
+  :root {
+    /*  */
+    --color-primary: #00abab;
+    --color-secondary: #b04b42;
+    --color-ternary: #1c3d5b;
+    --color-text: #006b6b;
+    --color-bg: #f7f5f0;
+    --color-ul-bg: #fdecd7;
+    --color-ul-text: #572406;
+  }
+}
+
+/* Reset global */
+/* Quitar márgenes y paddings por defecto */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+  /* box-sizing: border-box; */
+}
+
+
+body {
+    min-width: 320px;
+    min-height: 100vh;
+    display: flex;
+    place-items: center;
+    background-color: var(--color-bg);
+    color: var(--color-text);
+    -webkit-text-size-adjust: 100%; /* evita zoom raro en móviles iOS */
+}
+/* Definir tipografía global */
+/* body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  line-height: 1.5;
+  color: #222;
+  background-color: #fff;
+} */
+
+/* Hacer que imágenes y vídeos no se salgan */
+img,
+video {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Listas sin estilos por defecto */
+ul,
+ol {
+  list-style: none;
+}
+
+h1, h2, h3, h4, h5, p {
+  margin: 0;
+  padding: 0;
+}
+
+h1 {
+  color: var(--color-primary);
+}
+
+h3 {
+  color: var(--color-secondary);
+  font-size: 1.35em;
+}
+
+h5{
+    color: var(--color-ternary);
+}
+
+p {
+  color: var(--color-text);
+}
+
+/* Enlaces sin subrayado y heredan color */
+a {
+  text-decoration: none;
+  color: var(--color-ternary);
+}
