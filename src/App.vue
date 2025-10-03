@@ -2,18 +2,9 @@
 // import Hello from './components/Hello.vue'
 import profile from './views/profile.vue';
 
-
 </script>
 
 <template>
-  <div>
-    <a href="https://linkeding.com" target="_blank">
-      <!-- <img src="/vite.svg" class="logo" alt="Vite logo" /> -->
-    </a>
-    <a href="https://github.org/" target="_blank">
-      <!-- <img src="./assets/vue.svg" class="logo vue" alt="Vue logo" /> -->
-    </a>
-  </div>
   <profile />
   <!-- <Hello title="Estamos en construcción" msg="Disculpen las molestias" /> -->
 </template>

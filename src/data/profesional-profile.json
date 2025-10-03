@@ -2,6 +2,7 @@
     "name": "Pepita",
     "surname": "Martín López",
     "profession": "Desarrolladora Full Stack",
+    
     "contactInformation":[{
         "location": "Madrid, España",
         "email": "",
@@ -23,10 +24,29 @@
         {
             "role": "Desarrolladora Web",
             "company": "Tech Solutions",
-            "start": "Enero 2022",
-            "end": "Presente",
             "current": "true",
             "duration": "Enero 2022 - Presente",
+            "technologies": [
+                "JavaScript",
+                "Vue.js",
+                "Node.js",
+                "HTML5",
+                "CSS3",
+                "SQL",
+                "NoSQL",
+                "Git"
+            ], 
+            "responsibilities": [
+                "Desarrollo y mantenimiento de aplicaciones web utilizando Vue.js y Node.js.",
+                "Colaboración con equipos de diseño para implementar interfaces de usuario atractivas y funcionales.",
+                "Optimización del rendimiento de las aplicaciones y resolución de problemas técnicos."
+            ]
+        },
+        {
+            "role": "Desarrolladora Web",
+            "company": "Techic Sols",
+            "current": "true",
+            "duration": "Enero 2020 - Enero 2022",
             "responsibilities": [
                 "Desarrollo y mantenimiento de aplicaciones web utilizando Vue.js y Node.js.",
                 "Colaboración con equipos de diseño para implementar interfaces de usuario atractivas y funcionales.",

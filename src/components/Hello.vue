@@ -21,5 +21,12 @@ const count = ref(0)
         background: url('@img/background-cats.jpg') no-repeat center;
         background-size: cover;
         color: white;
-    }
+        width: 100vw;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+      }
 </style>
