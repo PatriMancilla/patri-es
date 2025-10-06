@@ -26,54 +26,86 @@
         "PHP"
     ], 
     
-    "experience": [
+    "education": {
+        "title": "Formación",
+        "items" : [
+            {
+                "degree": "Técnico Superior en Administración de Sistemas Informáticos en Red",
+                "institution": "I.E.S. Los Montecillos, Málaga",
+                "year": "2016",
+                "current":false
+            },
+            {
+                "degree": "Licenciatura en Bellas Artes",
+                "institution": "Universidad de Granada",
+                "year": "2010",
+                "current":false
+            }
+        ]
+    },
+
+    "experience": {
+        "title": "Profesional experience:",
+        "items" : [
+            {
+                "role": "FullStack Developer",
+                "company": "Change Cener S.A.U",
+                "current": false,
+                "duration": "12/2021 – 07/2025",
+                "technologies": [".NET", "C#", "ASP.NET", "Visual Basic","SQL", "JavaScript"],
+                "responsibilities": [
+                    "Desarrollo y mantenimiento de aplicaciones web con .NET, C#, Visual Basic, SQL y JavaScript.",
+                    "Migración de aplicaciones heredadas a arquitecturas modernas.",
+                    "Integración de APIs externas (OCR y terceros).",
+                    "Colaboración con equipos de diseño y clientes para mejorar la experiencia de usuario."
+                ]
+            },
+            {
+                "role": "Front-End Developer",
+                "company": "Primor",
+                "current": false,
+                "duration": "06/2021 – 12/2021",
+                "technologies": ["Prestashop", "HTML", "JavaScript", "jQuery", "Bootstrap", "SASS"],
+                "responsibilities": [
+                    "Desarrollo Front-End en Prestashop.",
+                    "Implementación de interfaces responsive y optimización de usabilidad."
+                ]
+            },
+            {
+                "role": "FullStack Developer",
+                "company": "Global University Systems",
+                "current": false,
+                "duration": "08/2017 – 10/2020",
+                "technologies": ["ASP.NET", "C#", "Umbraco", "Azure DevOps", "HTML", "CSS", "JavaScript"],
+                "responsibilities": [
+                    "Mantenimiento y creación de webs con CMS Umbraco.",
+                    "Gestión de proyectos en Azure DevOps bajo metodología Agile.",
+                    "Colaboración con Marketing y SEO para optimizar el rendimiento web."
+                ]
+            },
+            {
+                "role": "Web Developer y Diseñador Gráfico",
+                "company": "N.C.S Solutions",
+                "current": false,
+                "duration": "06/2016 - 07/2017",
+                "technologies": ["PHP", "WordPress", "HTML", "CSS", "JavaScript", "JQuery", "Photoshop", "Illustrator"],
+                "responsibilities": [
+                    "Creación de páginas webs con WordPress. ",
+                    "Trabajos de Diseño Web",
+                    "Trabajos de Diseño Gráfico y Branding"
+                ]
+            }
+        ]
+    }, 
+    
+    "languages": [
         {
-            "role": "FullStack Developer",
-            "company": "Change Cener S.A.U",
-            "current": false,
-            "duration": "12/2021 – 07/2025",
-            "technologies": [".NET", "C#", "ASP.NET", "SQL", "JavaScript"],
-            "responsibilities": [
-                "Desarrollo y mantenimiento de aplicaciones web con .NET, C#, SQL y JavaScript.",
-                "Migración de aplicaciones heredadas a arquitecturas modernas.",
-                "Integración de APIs externas (OCR y terceros).",
-                "Colaboración con equipos de diseño y clientes para mejorar la experiencia de usuario."
-            ]
+            "language": "Español",
+            "level": "Nativo"
         },
         {
-            "role": "Front-End Developer",
-            "company": "Primor",
-            "current": false,
-            "duration": "06/2021 – 12/2021",
-            "technologies": ["Prestashop", "HTML", "CSS", "JavaScript", "jQuery", "Bootstrap", "SASS"],
-            "responsibilities": [
-                "Desarrollo Front-End en Prestashop.",
-                "Implementación de interfaces responsive y optimización de usabilidad."
-            ]
-        },
-        {
-            "role": "Web Developer",
-            "company": "Global University Systems",
-            "current": false,
-            "duration": "08/2017 – 10/2020",
-            "technologies": ["ASP.NET", "C#", "Umbraco", "Azure DevOps", "HTML", "CSS", "JavaScript"],
-            "responsibilities": [
-                "Mantenimiento y creación de webs con CMS Umbraco.",
-                "Gestión de proyectos en Azure DevOps bajo metodología Agile.",
-                "Colaboración con Marketing y SEO para optimizar el rendimiento web."
-            ]
-        },
-        {
-            "role": "Web Developer y Diseñador Gráfico",
-            "company": "N.C.S Solutions",
-            "current": false,
-            "duration": "06/2016 - 07/2017",
-            "technologies": ["PHP", "WordPress", "HTML", "CSS", "JavaScript", "JQuery", "SQL", "Photoshop", "Illustrator"],
-            "responsibilities": [
-                "Creación de páginas webs con WordPress. ",
-                "Trabajos de Diseño Web",
-                "Trabajos de Diseño Gráfico y Branding"
-            ]
+            "language": "Inglés",
+            "level": "Intermedio"
         }
     ]
 }
