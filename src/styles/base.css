@@ -16,12 +16,14 @@
   /* Variables de tema (colores) */
   --color-primary: #00abab;      /* h1 */
   --color-secondary: #cf7368;    /* h3 */
-    --color-ternary: #fadf90;
+  --color-ternary: #fadf90;
+
   --color-text: #35f3ea;         /* p */
+  --color-primary-text: #9ffded;
+
   --color-bg: #06012d;           /* fondo oscuro */
   --color-primary-bg: #066565;
-  --color-primary-text: #9ffded;
-  --color-cv: #fabf8f;
+  --color-secondary-bg: #400404; /* #650606   #3a2d2d    #2e0303*/
 
   --border-radius: 8px;
 }
@@ -34,11 +36,12 @@
     --color-primary: #00abab;
     --color-secondary: #b04b42;
     --color-ternary: #1c3d5b;
+
     --color-text: #006b6b;/* 00cdcd */
     --color-primary-text: #572406;
+
     --color-bg: #f7f5f0;
-    --color-primary-bg: #fdecd7; /* #e2e8c0; */
-    /* --color-primary-bg: #fdecd7; #e2e8c0 */
+    --color-primary-bg: #fdecd7; 
     --color-secondary-bg: #cfefec;
   }
 }
@@ -80,10 +83,10 @@ video {
 }
 
 /* Listas sin estilos por defecto */
-ul,
+/* ul,
 ol {
   list-style: none;
-}
+} */
 
 h1, h2, h3, h4, h5, p {
   margin: 0;

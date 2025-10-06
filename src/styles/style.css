@@ -14,7 +14,7 @@ header {
 ul {
   background-color: var(--color-primary-bg);
   padding: 1em;
-  list-style: none;
+  list-style: inside;
   border-radius: var(--border-radius);
   color: var(--color-primary-text);
 }
@@ -32,6 +32,10 @@ ul {
   display: flex;
   justify-items: center;
   flex-direction: column;
+}
+.contact-info span{
+  color: var(--color-text);
+  margin-left: 5px;
 }
 
 .container {
