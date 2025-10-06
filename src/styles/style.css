@@ -12,11 +12,11 @@ header {
 }
 
 ul {
-  background-color: var(--color-ul-bg);
+  background-color: var(--color-primary-bg);
   padding: 1em;
   list-style: none;
-  border-radius: 8px;
-  color: var(--color-ul-text);
+  border-radius: var(--border-radius);
+  color: var(--color-primary-text);
 }
 
 .avatar {
@@ -39,4 +39,10 @@ ul {
   text-align: left;
   max-width: 1024px;
   padding: 1em;
+}
+
+.section-title{
+  border-bottom: 2px solid var(--color-primary);
+  color: var(--color-primary);
+  margin-top: 1em;
 }
