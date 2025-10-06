@@ -32,18 +32,9 @@ defineProps({
         padding: .5em;
         background-color: var(--color-secondary-bg);
         border-radius: var(--border-radius);
-        /* 
-        box-sizing: content-box;
-        text-align: left;
-             */
     }
     h3{
         color: var(--color-text);
-        /* background-color: var(--color-secondary-bg);
-        color: var(--color-ternary);
-        padding: .5em;
-        border-radius: var(--border-radius); */
-
     }
     .item-subtitle{
         display: flex;
