@@ -97,14 +97,17 @@
         ]
     }, 
         
-    "languages": [
-        {
-            "language": "Español",
-            "level": "Nativo"
-        },
-        {
-            "language": "Inglés",
-            "level": "Intermedio"
-        }
-    ]
+    "languages":  {
+        "title": "Languages",
+        "items" : [
+            {
+                "language": "Español",
+                "level": "Nativo"
+            },
+            {
+                "language": "Inglés",
+                "level": "Intermedio"
+            }
+        ]
+    }
 }
