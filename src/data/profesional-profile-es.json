@@ -1,30 +1,46 @@
 {
     "name": "Patricia",
     "surname": "Mancilla",
-    "profession": "FullStack Developer | Especialista en .NET y Front-End",
+    "profession": "Programadora FullStack | Especialista en .NET y Front-End",
     
-    "contactInformation":[
-        {
-            "location": "España",
-            "email": "email@email.com",
-            "phone": "600000000",
-            "linkedin": "https://www.linkedin.com/in/..."
-        }
-    ],
+     "contactInformation": {
+        "title": "skills",
+        "items" : [
+            {
+                "location": "España",
+                "email": "email@email.com",
+                "phone": "600000000",
+                "websiteLink": "https://www.patri.es",
+                "websiteText" : "patri.es",
+                "linkedin": "www.linkedin.com/in/patricia-mancilla"
+            }
+        ]
+    },
     
     "aboutMe": "Apasionada por la tecnología y el desarrollo web, con experiencia en proyectos tanto frontend como backend. Me encanta aprender nuevas tecnologías y enfrentarme a desafíos técnicos. Destaco por mi capacidad de adaptación, paciencia y habilidad para trabajar en equipo con distintos perfiles.",
     
-    "skills": [
-        ".NET",
-        "C#",
-        "JavaScript",
-        "Vue.js",
-        "HTML5",
-        "CSS3",
-        "SQL",
-        "Git",
-        "PHP"
-    ], 
+    "softSkills": {
+        "title": "Cualidades",
+        "items" : [
+            ".NET",
+            "PHP"
+        ]
+    }, 
+
+    "skills": {
+        "title": "skills",
+        "items" : [
+            ".NET",
+            "C#",
+            "JavaScript",
+            "Vue.js",
+            "HTML5",
+            "CSS3",
+            "SQL",
+            "Git",
+            "PHP"
+        ]
+    }, 
     
     "education": {
         "title": "Formación",
@@ -45,7 +61,7 @@
     },
 
     "experience": {
-        "title": "Profesional experience:",
+        "title": "Experiencia profesional",
         "items" : [
             {
                 "role": "FullStack Developer",
@@ -98,14 +114,17 @@
         ]
     }, 
     
-    "languages": [
-        {
-            "language": "Español",
-            "level": "Nativo"
-        },
-        {
-            "language": "Inglés",
-            "level": "Intermedio"
-        }
-    ]
+    "languages":  {
+        "title": "Idiomas",
+        "items" : [
+            {
+                "language": "Español",
+                "level": "Nativo"
+            },
+            {
+                "language": "Inglés",
+                "level": "Intermedio"
+            }
+        ]
+    }
 }
