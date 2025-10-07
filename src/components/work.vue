@@ -10,12 +10,12 @@ defineProps({
 
 </script>
 <template>
-    <div class="git-area">
+    <!-- <div class="git-area">
         <div class="branch-line">
           <div v-if="current" class="current-branch" ></div>
           <div v-else class="branch" ></div>
         </div>
-    </div>
+    </div> -->
     <div class="work-item">
         <div class="item-title">
             <h3>{{ role }} - {{ company }}</h3>
