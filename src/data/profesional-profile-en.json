@@ -3,28 +3,44 @@
     "surname": "Mancilla",
     "profession": "FullStack Developer | .NET & Front-End Specialist",
     
-    "contactInformation":[
-        {
-            "location": "Spain",
-            "email": "email@email.com",
-            "phone": "600000000",
-            "linkedin": "https://www.linkedin.com/in/..."
-        }
-    ],
+    "contactInformation": {
+        "title": "skills",
+        "items" : [
+            {
+                "location": "España",
+                "email": "email@email.com",
+                "phone": "600000000",
+                "websiteLink": "https://www.patri.es",
+                "websiteText" : "patri.es",
+                "linkedin": "www.linkedin.com/in/patricia-mancilla"
+            }
+        ]
+    },
     
     "aboutMe": "Passionate about technology and web development, with experience in both frontend and backend projects. I love learning new technologies and tackling technical challenges. Known for my adaptability, patience, and ability to work effectively with diverse teams.",
     
-    "skills": [
-        ".NET",
-        "C#",
-        "JavaScript",
-        "Vue.js",
-        "HTML5",
-        "CSS3",
-        "SQL",
-        "Git",
-        "PHP"
-    ], 
+    "softSkills": {
+        "title": "Soft skills",
+        "items" : [
+            ".NET",
+            "PHP"
+        ]
+    }, 
+    "skills": {
+        "title": "skills",
+        "items" : [
+            ".NET",
+            "C#",
+            "JavaScript",
+            "Vue.js",
+            "HTML5",
+            "CSS3",
+            "SQL",
+            "Git",
+            "PHP"
+        ]
+    }, 
+
     "education": {
         "title": "Education",
         "items" :[

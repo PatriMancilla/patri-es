@@ -1,35 +1,32 @@
 {
     "name": "Patricia",
     "surname": "Mancilla",
-    "profession": "FullStack Developer | Especialista en .NET y Front-End",
+    "profession": "Programadora FullStack | Especialista en .NET y Front-End",
     
-    "contactInformation":[
-        {
-            "location": "España",
-            "email": "email@email.com",
-            "phone": "600000000",
-            "websiteLink": "https://www.patri.es",
-            "websiteText" : "patri.es",
-            "linkedin": "www.linkedin.com/in/patricia-mancilla"
-        }
-    ],
+     "contactInformation": {
+        "title": "skills",
+        "items" : [
+            {
+                "location": "España",
+                "email": "email@email.com",
+                "phone": "600000000",
+                "websiteLink": "https://www.patri.es",
+                "websiteText" : "patri.es",
+                "linkedin": "www.linkedin.com/in/patricia-mancilla"
+            }
+        ]
+    },
     
     "aboutMe": "Apasionada por la tecnología y el desarrollo web, con experiencia en proyectos tanto frontend como backend. Me encanta aprender nuevas tecnologías y enfrentarme a desafíos técnicos. Destaco por mi capacidad de adaptación, paciencia y habilidad para trabajar en equipo con distintos perfiles.",
     
     "softSkills": {
-        "title": "Soft skills",
+        "title": "Cualidades",
         "items" : [
             ".NET",
-            "C#",
-            "JavaScript",
-            "Vue.js",
-            "HTML5",
-            "CSS3",
-            "SQL",
-            "Git",
             "PHP"
         ]
     }, 
+
     "skills": {
         "title": "skills",
         "items" : [
