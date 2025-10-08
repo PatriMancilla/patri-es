@@ -46,7 +46,61 @@ onMounted(async () => {
         :viewBox="`0 0 120 ${height}`"
         xmlns="http://www.w3.org/2000/svg"
       >
-        <!-- Línea principal -->
+       
+         
+        <!-- Merge (solo si no es current) -->
+
+        <path
+          ref="pathRef"
+          :d="`M 20,${height / 6} 
+          C50,${height / 6}, 
+          100,${height / 6}, 
+          100,${height / 3}`"
+          
+          :stroke="current ? 'var(--color-primary)' : 'var(--color-secondary)'"
+          stroke-width="4"
+          fill="none"
+          stroke-linecap="round"
+          
+        
+        :style="{
+            strokeDasharray: visible ? 'none' : '140',
+            strokeDashoffset: visible ? '0' : '140',
+            transition: 'stroke-dashoffset 1s ease-out 0.3s'
+          }"
+        />
+
+
+        <path
+     id="rect1"
+     style="display:inline;
+     fill:none;stroke:#0000aa;
+     stroke-width:4;stroke-linecap:round;
+     stroke-linejoin:round"
+     d="m 99.613383,
+     82.750929 0.519637,
+     133.026431 c 0,
+     0 -0.826094,
+     12.82157 -7.389524,
+     19.36019 -6.563426,
+     6.53862 -21.237306,
+     7.27341 -21.237306,
+     7.27341 l -52.457863,
+     -0.40353" />
+
+        <!-- Nodo ook! este circulo es más grande si es current! hay que arreglar la animación solo-->
+        <circle
+          cx="100"
+          :cy="height / 3"
+          :r="current ? '10' : '6'" 
+          fill="var(--color-secondary)"
+          :class="{ active: circleHovered }"
+          @mouseenter="circleHovered = true"
+          @mouseleave="circleHovered = false"
+          @click="circleHovered = !circleHovered"
+        />
+
+         <!-- Línea principal -->
         <line
           x1="20"
           y1="0"
@@ -55,49 +109,6 @@ onMounted(async () => {
           stroke="var(--color-secondary)"
           stroke-width="4"
           stroke-linecap="round"
-        />
-
-       
-        <!-- Merge (solo si no es current) -->
-        <path
-          v-if="!current"
-          :d="`M100,${(height / 3) * 2} C100,${(height / 3) * 2}, 50,${(height / 3) * 2}, 20,${height - 10}`"
-          stroke="var(--color-secondary)"
-          stroke-width="4"
-          fill="none"
-          stroke-linecap="round"
-          :style="{
-            strokeDasharray: visible ? 'none' : '140',
-            strokeDashoffset: visible ? '0' : '140',
-            transition: 'stroke-dashoffset 1s ease-out 0.3s'
-          }"
-        />
-
-        <!-- Nodo -->
-        <circle
-          cx="100"
-          :cy="height / 3"
-          r="6"
-          :fill="current ? 'var(--color-primary)' : 'var(--color-secondary)'"
-          :class="{ active: circleHovered }"
-          @mouseenter="circleHovered = true"
-          @mouseleave="circleHovered = false"
-          @click="circleHovered = !circleHovered"
-        />
-
-         <!-- Rama que sale de main -->
-        <path
-          ref="pathRef"
-          :d="`M20,${height / 6} C50,${height / 6}, 100,${height / 6}, 100,${height / 3}`"
-          :stroke="current ? 'var(--color-primary)' : 'var(--color-secondary)'"
-          stroke-width="4"
-          fill="none"
-          stroke-linecap="round"
-          :style="{
-            strokeDasharray: visible ? 'none' : '140',
-            strokeDashoffset: visible ? '0' : '140',
-            transition: 'stroke-dashoffset 1s ease-out'
-          }"
         />
 
       </svg>
