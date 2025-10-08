@@ -65,7 +65,7 @@
             {
                 "role": "FullStack Developer",
                 "company": "Change Cener S.A.U",
-                "current": false,
+                "current": true,
                 "duration": "12/2021 – 07/2025",
                 "technologies": [".NET", "C#", "ASP.NET", "Visual Basic", "SQL", "JavaScript"],
                 "responsibilities": [
