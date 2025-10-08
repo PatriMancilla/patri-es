@@ -1,5 +1,5 @@
 <script setup>
-import { ref, onMounted, nextTick, watch } from "vue"
+import { ref, onMounted, nextTick } from "vue"
 
 const props = defineProps({
   role: String,
@@ -14,7 +14,6 @@ const props = defineProps({
     default: "var(--color-primary)",
   },
 })
-
 
 const { branchColor, current, index } = props
 
@@ -32,7 +31,6 @@ onMounted(async () => {
   await nextTick()
   if (container.value) height.value = container.value.offsetHeight + 20
 
-  // Observer: activa animación al entrar en viewport
   const observer = new IntersectionObserver(
     (entries) => {
       if (entries[0].isIntersecting) {
@@ -40,11 +38,11 @@ onMounted(async () => {
         observer.disconnect()
       }
     },
-    { threshold: 0.4 }
+    { threshold: 0.3 }
   )
+
   if (pathRef.value) observer.observe(pathRef.value)
 })
-
 </script>
 
 <template>
@@ -57,9 +55,30 @@ onMounted(async () => {
         :viewBox="`0 0 ${svgWidth} ${height}`"
         xmlns="http://www.w3.org/2000/svg"
       >
-        
+        <!-- Línea principal -->
+        <line
+          x1="20"
+          y1="0"
+          x2="20"
+          :y2="height"
+          stroke="var(--color-secondary)"
+          stroke-width="4"
+          stroke-linecap="round"
+        />
 
-        <!-- Rama que SALE del main (ahora hacia ARRIBA) -->
+        <!-- Circulo main (punto de unión de rama) -->
+        <circle
+          cx="20"
+          :cy="height / 3 + mergeHeight"
+          r="5"
+          fill="var(--color-secondary)"
+          class="main-dot"
+          :style="{
+            animationDelay: index * 0.5 + 's'
+          }"
+        />
+
+        <!-- Rama que SALE del main (flujo bottom→top) -->
         <path
           ref="pathRef"
           :d="`
@@ -78,7 +97,7 @@ onMounted(async () => {
           }"
         />
 
-        <!-- MERGE (ahora hacia el main, solo si no es current) -->
+        <!-- MERGE (ahora hacia main, solo si no es current) -->
         <path
           v-if="!current"
           :d="`
@@ -97,27 +116,32 @@ onMounted(async () => {
           }"
         />
 
-        <!-- Nodo -->
+        <!-- Nodo rama -->
         <circle
           :cx="svgWidth - 20"
           :cy="height / 3 + mergeHeight"
-          :r="current ? '14' : '10'"
+          :r="current ? '10' : '6'"
           :fill="branchColor"
           :class="{ active: circleHovered }"
           @mouseenter="circleHovered = true"
           @mouseleave="circleHovered = false"
           @click="circleHovered = !circleHovered"
+          :style="{
+            animationDelay: (index * 0.5 + 0.6) + 's'
+          }"
         />
 
-        <!-- Línea principal -->
-        <line
-          x1="20"
-          y1="0"
-          x2="20"
-          :y2="height"
-          stroke="var(--color-secondary)"
-          stroke-width="4"
-          stroke-linecap="round"
+        <!-- Circulo main (punto de merge) -->
+        <circle
+          v-if="!current"
+          cx="20"
+          :cy="height / 3"
+          r="5"
+          fill="var(--color-secondary)"
+          class="main-dot"
+          :style="{
+            animationDelay: (index * 0.5 + 0.8) + 's'
+          }"
         />
       </svg>
     </div>
@@ -183,14 +207,26 @@ onMounted(async () => {
   }
 }
 
-/* Efecto del nodo */
+/* Círculos de main */
+.main-dot {
+  opacity: 0;
+  animation: show-dot 0.5s ease-out forwards;
+}
+
+@keyframes show-dot {
+  to {
+    opacity: 1;
+  }
+}
+
+/* Nodo */
 .git-svg circle {
   transition: transform 0.3s ease, filter 0.3s ease;
   cursor: pointer;
 }
-/* 
+
 .git-svg circle.active {
-  transform: scale(0.4);
+  transform: scale(1.4);
   filter: drop-shadow(0 0 5px var(--color-primary));
-} */
+}
 </style>
