@@ -55,17 +55,7 @@ onMounted(async () => {
         :viewBox="`0 0 ${svgWidth} ${height}`"
         xmlns="http://www.w3.org/2000/svg"
       >
-        <!-- Línea principal -->
-        <line
-          x1="20"
-          y1="0"
-          x2="20"
-          :y2="height"
-          stroke="var(--color-secondary)"
-          stroke-width="4"
-          stroke-linecap="round"
-        />
-
+       
         <!-- Circulo main (punto de unión de rama) -->
         <circle
           cx="20"
@@ -135,7 +125,7 @@ onMounted(async () => {
         <circle
           v-if="!current"
           cx="20"
-          :cy="height / 3"
+          :cy="height / 3 - cornerRadius "
           r="5"
           fill="var(--color-secondary)"
           class="main-dot"
@@ -143,6 +133,17 @@ onMounted(async () => {
             animationDelay: (index * 0.5 + 0.8) + 's'
           }"
         />
+         <!-- Línea principal -->
+        <line
+          x1="20"
+          y1="0"
+          x2="20"
+          :y2="height"
+          stroke="var(--color-secondary)"
+          stroke-width="4"
+          stroke-linecap="round"
+        />
+
       </svg>
     </div>
 
