@@ -9,19 +9,27 @@ const props = defineProps({
   technologies: Array,
   responsibilities: Array,
   index: Number,
+  branchColor: {
+    type: String,
+    default: "var(--color-primary)",
+  },
 })
 
+const { branchColor, current } = props
+
 const circleHovered = ref(false)
-const visible = ref(false)
 const pathRef = ref(null)
+const visible = ref(false)
 const container = ref(null)
 const height = ref(120)
 
+const svgWidth = 120
+const cornerRadius = 20
+const mergeHeight = 40
+
 onMounted(async () => {
   await nextTick()
-  if (container.value) {
-    height.value = container.value.offsetHeight + 20
-  }
+  if (container.value) height.value = container.value.offsetHeight + 20
 
   const observer = new IntersectionObserver(
     (entries) => {
@@ -41,9 +49,9 @@ onMounted(async () => {
     <div class="git-area">
       <svg
   class="git-svg"
-  :width="120"
+  :width="svgWidth"
   :height="height"
-  :viewBox="`0 0 120 ${height}`"
+  :viewBox="`0 0 ${svgWidth} ${height}`"
   xmlns="http://www.w3.org/2000/svg"
 >
   <!-- Línea principal -->
@@ -57,52 +65,44 @@ onMounted(async () => {
     stroke-linecap="round"
   />
 
-  <!-- Rama que sale (esquina inferior derecha redondeada) -->
+  <!-- Rama que sale de main -->
   <path
     ref="pathRef"
     :d="`
       M20,${height / 6}
-      H80
-      A20,20 0 0 1 100,${height / 6 + 20}
+      H${svgWidth - 40}
+      A${cornerRadius},${cornerRadius} 0 0 1 ${svgWidth - 20},${height / 6 + cornerRadius}
       V${height / 3}
     `"
-    :stroke="current ? 'var(--color-primary)' : 'var(--color-secondary)'"
+    :stroke="branchColor"
     stroke-width="4"
     fill="none"
     stroke-linecap="round"
-    :style="{
-      strokeDasharray: visible ? 'none' : '140',
-      strokeDashoffset: visible ? '0' : '140',
-      transition: 'stroke-dashoffset 1s ease-out'
-    }"
+    class="branch-path"
   />
 
-  <!-- Merge (esquina superior izquierda redondeada) -->
+  <!-- Merge (solo si no es current) -->
   <path
     v-if="!current"
     :d="`
-      M100,${height / 3}
-      V${height / 3 + 40}
-      A20,20 0 0 1 80,${height / 3 + 60}
+      M${svgWidth - 20},${height / 3}
+      V${height / 3 + mergeHeight}
+      A${cornerRadius},${cornerRadius} 0 0 1 ${svgWidth - 40},${height / 3 + mergeHeight + cornerRadius}
       H20
     `"
-    stroke="var(--color-secondary)"
+    :stroke="branchColor"
     stroke-width="4"
     fill="none"
     stroke-linecap="round"
-    :style="{
-      strokeDasharray: visible ? 'none' : '140',
-      strokeDashoffset: visible ? '0' : '140',
-      transition: 'stroke-dashoffset 1s ease-out 0.3s'
-    }"
+    class="merge-path"
   />
 
   <!-- Nodo -->
   <circle
-    cx="100"
+    :cx="svgWidth - 20"
     :cy="height / 3"
     :r="current ? '10' : '6'"
-    fill="var(--color-secondary)"
+    :fill="branchColor"
     :class="{ active: circleHovered }"
     @mouseenter="circleHovered = true"
     @mouseleave="circleHovered = false"
@@ -185,5 +185,32 @@ h5 {
   margin: 0;
   line-height: 3;
   margin-left: 5px;
+}
+
+.branch-path,
+.merge-path {
+  stroke-dasharray: 400;
+  stroke-dashoffset: 400;
+  animation: draw-line 1s ease-out forwards;
+}
+
+.merge-path {
+  animation-delay: 0.4s;
+}
+
+@keyframes draw-line {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+.git-svg circle {
+  transition: transform 0.3s ease, filter 0.3s ease;
+  cursor: pointer;
+}
+
+.git-svg circle.active {
+  transform: scale(1.4);
+  filter: drop-shadow(0 0 5px var(--color-primary));
 }
 </style>
