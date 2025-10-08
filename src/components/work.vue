@@ -1,5 +1,5 @@
 <script setup>
-import { ref, onMounted, nextTick } from "vue"
+import { ref, onMounted, nextTick, watch } from "vue"
 
 const props = defineProps({
   role: String,
@@ -15,11 +15,12 @@ const props = defineProps({
   },
 })
 
-const { branchColor, current } = props
+
+const { branchColor, current, index } = props
 
 const circleHovered = ref(false)
-const pathRef = ref(null)
 const visible = ref(false)
+const pathRef = ref(null)
 const container = ref(null)
 const height = ref(120)
 
@@ -31,6 +32,7 @@ onMounted(async () => {
   await nextTick()
   if (container.value) height.value = container.value.offsetHeight + 20
 
+  // Observer: activa animación al entrar en viewport
   const observer = new IntersectionObserver(
     (entries) => {
       if (entries[0].isIntersecting) {
@@ -42,74 +44,84 @@ onMounted(async () => {
   )
   if (pathRef.value) observer.observe(pathRef.value)
 })
+
 </script>
 
 <template>
   <div class="item" ref="container">
     <div class="git-area">
       <svg
-  class="git-svg"
-  :width="svgWidth"
-  :height="height"
-  :viewBox="`0 0 ${svgWidth} ${height}`"
-  xmlns="http://www.w3.org/2000/svg"
->
-  <!-- Línea principal -->
-  <line
-    x1="20"
-    y1="0"
-    x2="20"
-    :y2="height"
-    stroke="var(--color-secondary)"
-    stroke-width="4"
-    stroke-linecap="round"
-  />
+        class="git-svg"
+        :width="svgWidth"
+        :height="height"
+        :viewBox="`0 0 ${svgWidth} ${height}`"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        
 
-  <!-- Rama que sale de main -->
-  <path
-    ref="pathRef"
-    :d="`
-      M20,${height / 6}
-      H${svgWidth - 40}
-      A${cornerRadius},${cornerRadius} 0 0 1 ${svgWidth - 20},${height / 6 + cornerRadius}
-      V${height / 3}
-    `"
-    :stroke="branchColor"
-    stroke-width="4"
-    fill="none"
-    stroke-linecap="round"
-    class="branch-path"
-  />
+        <!-- Rama que SALE del main (ahora hacia ARRIBA) -->
+        <path
+          ref="pathRef"
+          :d="`
+            M20,${height - 10}
+            H${svgWidth - 40}
+            A${cornerRadius},${cornerRadius} 0 0 0 ${svgWidth - 20},${height - 30}
+            V${height / 3 + mergeHeight}
+          `"
+          :stroke="branchColor"
+          stroke-width="4"
+          fill="none"
+          stroke-linecap="round"
+          class="branch-path"
+          :style="{
+            animationDelay: index * 0.5 + 's'
+          }"
+        />
 
-  <!-- Merge (solo si no es current) -->
-  <path
-    v-if="!current"
-    :d="`
-      M${svgWidth - 20},${height / 3}
-      V${height / 3 + mergeHeight}
-      A${cornerRadius},${cornerRadius} 0 0 1 ${svgWidth - 40},${height / 3 + mergeHeight + cornerRadius}
-      H20
-    `"
-    :stroke="branchColor"
-    stroke-width="4"
-    fill="none"
-    stroke-linecap="round"
-    class="merge-path"
-  />
+        <!-- MERGE (ahora hacia el main, solo si no es current) -->
+        <path
+          v-if="!current"
+          :d="`
+            M${svgWidth - 20},${height / 3 + mergeHeight}
+            V${height / 3}
+            A${cornerRadius},${cornerRadius} 0 0 0 ${svgWidth - 40},${height / 3 - cornerRadius}
+            H20
+          `"
+          :stroke="branchColor"
+          stroke-width="4"
+          fill="none"
+          stroke-linecap="round"
+          class="merge-path"
+          :style="{
+            animationDelay: (index * 0.5 + 0.4) + 's'
+          }"
+        />
 
-  <!-- Nodo -->
-  <circle
-    :cx="svgWidth - 20"
-    :cy="height / 3"
-    :r="current ? '10' : '6'"
-    :fill="branchColor"
-    :class="{ active: circleHovered }"
-    @mouseenter="circleHovered = true"
-    @mouseleave="circleHovered = false"
-    @click="circleHovered = !circleHovered"
-  />
-</svg>
+        <!-- Nodo -->
+        <circle
+          :cx="svgWidth - 20"
+          :cy="height / 3 + mergeHeight"
+          :r="current ? '14' : '10'"
+          :fill="branchColor"
+          :class="{ active: circleHovered }"
+          @mouseenter="circleHovered = true"
+          @mouseleave="circleHovered = false"
+          @click="circleHovered = !circleHovered"
+        />
+
+        <!-- Línea principal -->
+        <line
+          x1="20"
+          y1="0"
+          x2="20"
+          :y2="height"
+          stroke="var(--color-secondary)"
+          stroke-width="4"
+          stroke-linecap="round"
+        />
+      </svg>
     </div>
+
     <div class="work-item">
       <div class="item-title">
         <h3>{{ role }} - {{ company }}</h3>
@@ -153,49 +165,16 @@ onMounted(async () => {
   overflow: visible;
 }
 
-.git-svg line,
-.git-svg path {
+.git-svg line {
   stroke-linecap: round;
-  transition: stroke-dashoffset 1s ease-out;
 }
 
-/* Nodo */
-.git-svg circle {
-  transition: transform 0.3s ease, filter 0.3s ease;
-  cursor: pointer;
-}
-
-.git-svg circle.active {
-  transform: scale(1.4);
-  filter: drop-shadow(0 0 5px var(--primary));
-}
-
-.work-item {
-  padding-top: 0.5em;
-  padding-bottom: 0.5em;
-}
-
-.item-title {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-h5 {
-  margin: 0;
-  line-height: 3;
-  margin-left: 5px;
-}
-
+/* ✨ Animaciones */
 .branch-path,
 .merge-path {
   stroke-dasharray: 400;
   stroke-dashoffset: 400;
   animation: draw-line 1s ease-out forwards;
-}
-
-.merge-path {
-  animation-delay: 0.4s;
 }
 
 @keyframes draw-line {
@@ -204,13 +183,14 @@ h5 {
   }
 }
 
+/* Efecto del nodo */
 .git-svg circle {
   transition: transform 0.3s ease, filter 0.3s ease;
   cursor: pointer;
 }
-
+/* 
 .git-svg circle.active {
-  transform: scale(1.4);
+  transform: scale(0.4);
   filter: drop-shadow(0 0 5px var(--color-primary));
-}
+} */
 </style>

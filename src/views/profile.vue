@@ -46,7 +46,7 @@ onMounted(() => {
 
       <div class="experience">
         <h4 class="section-title">{{ datos.experience.title }}</h4>
-        <work
+<work
   v-for="(item, index) in datos.experience.items"
   :key="index"
   :role="item.role"
@@ -56,9 +56,10 @@ onMounted(() => {
   :technologies="item.technologies"
   :responsibilities="item.responsibilities"
   :branchColor="['#00BFA6', '#FF7B00', '#004CFF', '#FF0059'][index % 4]"
+  :index="index"
 />
       
-      <work v-for="(item, index) in datos.experience.items"
+      <!-- <work v-for="(item, index) in datos.experience.items"
           :key="index"
           :index="index"
           :role="item.role"
@@ -69,6 +70,7 @@ onMounted(() => {
           :responsibilities="item.responsibilities"
         />
       
+        -->
       
       </div>
 
