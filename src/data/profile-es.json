@@ -1,4 +1,5 @@
 {
+    "template": "pochi",
     "name": "Patricia",
     "surname": "Mancilla",
     "profession": "Programadora FullStack | Especialista en .NET y Front-End",
@@ -49,13 +50,15 @@
                 "degree": "Técnico Superior en Administración de Sistemas Informáticos en Red",
                 "institution": "I.E.S. Los Montecillos, Málaga",
                 "year": "2016",
-                "current":false
+                "current":false,
+                "description": ""
             },
             {
                 "degree": "Licenciatura en Bellas Artes",
                 "institution": "Universidad de Granada",
                 "year": "2010",
-                "current":false
+                "current":false,
+                "description": ""
             }
         ]
     },
@@ -65,15 +68,30 @@
         "items" : [
             {
                 "role": "FullStack Developer",
-                "company": "Change Center S.A.U",
+                "company": "Club Center S.A",
                 "current": false,
                 "duration": "12/2021 – 07/2025",
                 "technologies": [".NET", "C#", "ASP.NET", "Visual Basic","SQL", "JavaScript"],
-                "responsibilities": [
-                    "Desarrollo y mantenimiento de aplicaciones web con .NET, C#, Visual Basic, SQL y JavaScript.",
-                    "Migración de aplicaciones heredadas a arquitecturas modernas.",
-                    "Integración de APIs externas (OCR y terceros).",
-                    "Colaboración con equipos de diseño y clientes para mejorar la experiencia de usuario."
+                "responsibilities": [ 
+                    { 
+                        "task": [
+                            {
+                                "type": "list",
+                                "description" : [
+                                "Colaboración con equipos de diseño y clientes para mejorar la experiencia de usuario.",
+                                "Desarrollo y mantenimiento de aplicaciones web con .NET, C#, Visual Basic, SQL y JavaScript.",
+                                "Migración de aplicaciones heredadas a arquitecturas modernas.",
+                                "Integración de APIs externas (OCR y terceros)."
+                                ]
+                            },
+                            {
+                                "type": "paragraph",
+                                "description" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. "
+                            }
+                                
+                        ]
+
+                    }
                 ]
             },
             {

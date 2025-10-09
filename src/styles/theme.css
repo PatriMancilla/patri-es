@@ -1,0 +1,141 @@
+/* ==========================================================================
+   🎨 THEME VARIABLES
+   ==========================================================================
+   Este archivo define las variables de color globales del proyecto.
+   Para alternar entre temas, añade o quita la clase "dark" en el <html> o <body>.
+   ========================================================================== */
+
+:root {
+  /* Tema claro (por defecto) */
+  --color-primary: #00abab;
+  --color-secondary: #b04b42;
+  --color-ternary: #1c3d5b;
+
+  --color-text: #006b6b;
+  --color-text-light: rgba(0, 0, 0, 0.6);
+  --color-primary-text: #572406;
+
+  --color-bg: #f7f5f0;
+  --color-primary-bg: #fdecd7;
+  --color-secondary-bg: #cfefec;
+
+  --color-border: rgba(0, 0, 0, 0.1);
+  --color-shadow: rgba(0, 0, 0, 0.15);
+
+  --transition-fast: 0.25s ease;
+  --transition-medium: 0.45s ease;
+
+  /* Tipografía */
+  --font-family: "Inter", "Roboto", "Segoe UI", sans-serif;
+  --font-size-base: 16px;
+  --font-weight-normal: 400;
+  --font-weight-bold: 600;
+}
+
+html.dark {
+  /* Tema oscuro */
+  --color-primary: #00abab;
+  --color-secondary: #cf7368;
+  --color-ternary: #fadf90;
+
+  --color-text: #35f3ea;
+  --color-text-light: rgba(255, 255, 255, 0.7);
+  --color-primary-text: #9ffded;
+
+  --color-bg: #06012d;
+  --color-primary-bg: #066565;
+  --color-secondary-bg: #400404;
+
+  --color-border: rgba(255, 255, 255, 0.1);
+  --color-shadow: rgba(0, 0, 0, 0.4);
+}
+
+/* ==========================================================================
+   🧱 BASE STYLES
+   ========================================================================== */
+
+html, body {
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-family);
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-normal);
+  line-height: 1.6;
+  margin: 0;
+  padding: 0;
+  transition: background-color var(--transition-medium),
+              color var(--transition-medium);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-family);
+  margin: 0;
+  color: var(--color-primary);
+  font-weight: var(--font-weight-bold);
+  line-height: 1.2;
+  transition: color var(--transition-fast);
+}
+
+h3, h4, h5 {
+  color: var(--color-secondary);
+}
+
+p {
+  color: var(--color-text);
+  margin: 0.5em 0;
+}
+
+a {
+  color: var(--color-primary);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+a:hover {
+  color: var(--color-secondary);
+}
+
+/* ==========================================================================
+   🌈 UTILIDADES DE COLOR / BACKGROUND
+   ========================================================================== */
+
+.bg-primary {
+  background-color: var(--color-primary-bg);
+  color: var(--color-primary-text);
+}
+
+.bg-secondary {
+  background-color: var(--color-secondary-bg);
+  color: var(--color-text);
+}
+
+.text-primary {
+  color: var(--color-primary);
+}
+
+.text-secondary {
+  color: var(--color-secondary);
+}
+
+.text-muted {
+  color: var(--color-text-light);
+}
+
+/* Bordes y sombras */
+.border {
+  border: 1px solid var(--color-border);
+}
+
+.shadow {
+  box-shadow: 0 4px 8px var(--color-shadow);
+}
+
+/* ==========================================================================
+   🌓 MODO OSCURO TRANSICIÓN SUAVE
+   ========================================================================== */
+
+body, .git-svg, .timeline, .profile-layout {
+  transition: background-color var(--transition-medium),
+              color var(--transition-medium),
+              border-color var(--transition-medium);
+}

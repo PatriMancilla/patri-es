@@ -1,9 +1,9 @@
 {
     "name": "Patricia",
     "surname": "Mancilla",
-    "profession": "Programadora FullStack | Especialista en .NET y Front-End",
+    "profession": "FullStack Developer | .NET & Front-End Specialist",
     
-     "contactInformation": {
+    "contactInformation": {
         "title": "skills",
         "items" : [
             {
@@ -17,16 +17,15 @@
         ]
     },
     
-    "aboutMe": "Apasionada por la tecnología y el desarrollo web, con experiencia en proyectos tanto frontend como backend. Me encanta aprender nuevas tecnologías y enfrentarme a desafíos técnicos. Destaco por mi capacidad de adaptación, paciencia y habilidad para trabajar en equipo con distintos perfiles.",
+    "aboutMe": "Passionate about technology and web development, with experience in both frontend and backend projects. I love learning new technologies and tackling technical challenges. Known for my adaptability, patience, and ability to work effectively with diverse teams.",
     
     "softSkills": {
-        "title": "Cualidades",
+        "title": "Soft skills",
         "items" : [
             ".NET",
             "PHP"
         ]
     }, 
-
     "skills": {
         "title": "skills",
         "items" : [
@@ -41,39 +40,39 @@
             "PHP"
         ]
     }, 
-    
+
     "education": {
-        "title": "Formación",
-        "items" : [
+        "title": "Education",
+        "items" :[
+            
             {
-                "degree": "Técnico Superior en Administración de Sistemas Informáticos en Red",
+                "degree": "Higher Technician in Networked Computer Systems Administration",
                 "institution": "I.E.S. Los Montecillos, Málaga",
                 "year": "2016",
                 "current":false
             },
             {
-                "degree": "Licenciatura en Bellas Artes",
-                "institution": "Universidad de Granada",
+                "degree": "Bachelor’s Degree in Fine Arts",
+                "institution": "University of Granada",
                 "year": "2010",
                 "current":false
             }
         ]
     },
-
     "experience": {
-        "title": "Experiencia profesional",
+        "title": "Profesional experience:",
         "items" : [
             {
                 "role": "FullStack Developer",
-                "company": "Change Center S.A.U",
-                "current": false,
+                "company": "Change Cener S.A.U",
+                "current": true,
                 "duration": "12/2021 – 07/2025",
-                "technologies": [".NET", "C#", "ASP.NET", "Visual Basic","SQL", "JavaScript"],
+                "technologies": [".NET", "C#", "ASP.NET", "Visual Basic", "SQL", "JavaScript"],
                 "responsibilities": [
-                    "Desarrollo y mantenimiento de aplicaciones web con .NET, C#, Visual Basic, SQL y JavaScript.",
-                    "Migración de aplicaciones heredadas a arquitecturas modernas.",
-                    "Integración de APIs externas (OCR y terceros).",
-                    "Colaboración con equipos de diseño y clientes para mejorar la experiencia de usuario."
+                    "Developed and maintained web applications with .NET, C#, Visual Basic, SQL, and JavaScript.",
+                    "Migrated legacy applications to modern architectures.",
+                    "Integrated external APIs (OCR and third-party services).",
+                    "Collaborated with design teams and clients to enhance user experience."
                 ]
             },
             {
@@ -83,8 +82,8 @@
                 "duration": "06/2021 – 12/2021",
                 "technologies": ["Prestashop", "HTML", "JavaScript", "jQuery", "Bootstrap", "SASS"],
                 "responsibilities": [
-                    "Desarrollo Front-End en Prestashop.",
-                    "Implementación de interfaces responsive y optimización de usabilidad."
+                    "Front-End development in Prestashop.",
+                    "Implemented responsive interfaces and improved usability."
                 ]
             },
             {
@@ -94,28 +93,28 @@
                 "duration": "08/2017 – 10/2020",
                 "technologies": ["ASP.NET", "C#", "Umbraco", "Azure DevOps", "HTML", "CSS", "JavaScript"],
                 "responsibilities": [
-                    "Mantenimiento y creación de webs con CMS Umbraco.",
-                    "Gestión de proyectos en Azure DevOps bajo metodología Agile.",
-                    "Colaboración con Marketing y SEO para optimizar el rendimiento web."
+                    "Created and maintained websites with Umbraco CMS.",
+                    "Managed projects with Azure DevOps under Agile methodology.",
+                    "Worked with Marketing and SEO teams to optimize web performance."
                 ]
             },
             {
-                "role": "Web Developer y Diseñador Gráfico",
-                "company": "N.C.S Solutions",
+                "role": "Web Developer & Graphic Designer",
+                "company": "NCS Technology Solutions",
                 "current": false,
                 "duration": "06/2016 - 07/2017",
                 "technologies": ["PHP", "WordPress", "HTML", "CSS", "JavaScript", "JQuery", "Photoshop", "Illustrator"],
                 "responsibilities": [
-                    "Creación de páginas webs con WordPress. ",
-                    "Trabajos de Diseño Web",
-                    "Trabajos de Diseño Gráfico y Branding"
+                    "Created and maintained websites with Wordpress CMS.",
+                    "Managed and Design web projects",
+                    "Branding and Graphics desing"
                 ]
             }
         ]
     }, 
-    
+        
     "languages":  {
-        "title": "Idiomas",
+        "title": "Languages",
         "items" : [
             {
                 "language": "Español",
