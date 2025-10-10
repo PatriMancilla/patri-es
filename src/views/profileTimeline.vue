@@ -4,8 +4,8 @@ import esData from "../data/profile-es.json"
 import enData from "../data/profile-en.json"
 import GitTimeline from "../components/gitTimeline.vue"
 
-const lang = ref("es")
 const datos = ref(esData)
+const lang = ref("es")
 const isDark = ref(false)
 
 // ─── Idioma ───────────────────────────────
@@ -54,8 +54,8 @@ onMounted(() => {
     <header class="top-header">
       <div class="controls">
         <button class="lang-toggle" @click="toggleLanguage">
-          <span v-if="lang === 'es'">🇪🇸 ES</span>
-          <span v-else>🇬🇧 EN</span>
+          <span v-if="lang === 'es'">ES</span>
+          <span v-else>EN</span>
         </button>
         <button class="theme-toggle" @click="toggleTheme">
           <svg
@@ -70,18 +70,25 @@ onMounted(() => {
               d="M12 4.354a8 8 0 0 0 0 15.292V4.354zM13 2a10 10 0 1 1-7.071 17.071A9.993 9.993 0 0 1 13 2z"
             />
           </svg>
-          <svg
-            v-else
-            xmlns="http://www.w3.org/2000/svg"
-            width="20"
-            height="20"
-            fill="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path
-              d="M12 2a1 1 0 0 1 1 1v2a1 1 0 1 1-2 0V3a1 1 0 0 1 1-1zm6.364 3.636a1 1 0 0 1 1.414 1.414l-1.414 1.414a1 1 0 0 1-1.414-1.414l1.414-1.414zM21 11a1 1 0 1 1 0 2h-2a1 1 0 1 1 0-2h2zM12 17a5 5 0 1 0 0-10 5 5 0 0 0 0 10zm8.364 4.364a1 1 0 0 1-1.414-1.414l1.414-1.414a1 1 0 1 1 1.414 1.414l-1.414 1.414zM12 19a1 1 0 0 1 1 1v2a1 1 0 1 1-2 0v-2a1 1 0 0 1 1-1z"
-            />
-          </svg>
+           <svg
+    v-else
+    xmlns="http://www.w3.org/2000/svg"
+    width="20"
+    height="20"
+    viewBox="0 0 48 48"
+    fill="currentColor"
+    aria-label="Light mode"
+  >
+  <path d="M24,10a2,2,0,0,0,2-2V4a2,2,0,0,0-4,0V8A2,2,0,0,0,24,10Z"></path>
+  <path d="M24,38a2,2,0,0,0-2,2v4a2,2,0,0,0,4,0V40A2,2,0,0,0,24,38Z"></path>
+  <path d="M36.7,14.1l2.9-2.8a2.3,2.3,0,0,0,0-2.9,2.3,2.3,0,0,0-2.9,0l-2.8,2.9a2,2,0,1,0,2.8,2.8Z"></path>
+  <path d="M11.3,33.9,8.4,36.7a2.3,2.3,0,0,0,0,2.9,2.3,2.3,0,0,0,2.9,0l2.8-2.9a2,2,0,1,0-2.8-2.8Z"></path>
+  <path d="M44,22H40a2,2,0,0,0,0,4h4a2,2,0,0,0,0-4Z"></path>
+  <path d="M10,24a2,2,0,0,0-2-2H4a2,2,0,0,0,0,4H8A2,2,0,0,0,10,24Z"></path>
+  <path d="M36.7,33.9a2,2,0,1,0-2.8,2.8l2.8,2.9a2.1,2.1,0,1,0,2.9-2.9Z"></path>
+  <path d="M11.3,14.1a2,2,0,0,0,2.8-2.8L11.3,8.4a2.3,2.3,0,0,0-2.9,0,2.3,2.3,0,0,0,0,2.9Z"></path>
+  <path d="M24,14A10,10,0,1,0,34,24,10,10,0,0,0,24,14Z"></path>
+</svg>
         </button>
       </div>
     </header>
@@ -90,8 +97,10 @@ onMounted(() => {
     <div class="profile-head">
       <div class="avatar-block">
         <img src="@img/icon.svg" alt="avatar" />
-        <!-- círculo principal de la línea -->
+        
+        <!-- círculo principal de la línea 
         <div class="main-node"></div>
+        -->
       </div>
 
       <div class="title-block">

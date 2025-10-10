@@ -1,8 +1,8 @@
 <script setup>
 // import Hello from './components/Hello.vue'
-import profile from './views/profile.vue';
+//import profile from './views/profile.vue';
 //import profile from './views/profileTimeLine.vue';
-
+import profile from './views/profileTimeline.vue';
 </script>
 
 <template>
