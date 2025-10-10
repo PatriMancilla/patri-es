@@ -11,6 +11,8 @@ const props = defineProps({
     default: "var(--color-primary)",
   },
   index: Number,
+  isFirst: Boolean,
+  isLast: Boolean,
 })
 
 const container = ref(null)
@@ -41,7 +43,10 @@ onMounted(async () => {
 <template>
   <div class="item" ref="container">
     <div class="git-area">
-      <svg
+      <!-- :class="[
+      'education-item', 
+      { 'mt-2': isFirst, 'mb-1': isLast } -->
+        <svg
         class="git-svg"
         :width="svgWidth"
         :height="height"
@@ -127,7 +132,11 @@ onMounted(async () => {
     </div>
 
     <!-- Contenido -->
-    <div class="education-item">
+    <div :class="[
+      'education-item', 
+      { 'mt-2': isFirst, 'mb-1': isLast }
+    ]"
+     >
       <div class="item-title">
         <h3>{{ degree }}</h3>
         <h5>{{ year }}</h5>
@@ -140,7 +149,7 @@ onMounted(async () => {
 <style scoped>
 .item {
   display: grid;
-  grid-template-columns: minmax(120px, 25%) 1fr;
+  grid-template-columns: minmax(100px, 20%) 1fr;
   column-gap: 1rem;
   align-items: start;
   position: relative;

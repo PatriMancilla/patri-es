@@ -150,11 +150,13 @@ onMounted(() => {
 /* bloque principal */
 .profile-head {
   display: grid;
-  grid-template-columns: 120px 1fr;
+  grid-template-columns: 133px 1fr;
   align-items: start;
-  margin: 2rem 3rem 1rem 3rem;
+  margin: 2rem 0 0;
   position: relative;
+  column-gap: 6rem;
 }
+
 
 .avatar-block {
   display: flex;
@@ -164,9 +166,8 @@ onMounted(() => {
 }
 
 .avatar-block img {
-  width: 70px;
-  height: 70px;
-  border-radius: 50%;
+  width: 100px;
+  height: 100px;
   object-fit: contain;
   margin-bottom: 0.3rem;
 }
@@ -200,7 +201,7 @@ onMounted(() => {
 }
 
 /* timeline */
-.timeline-area {
+/* .timeline-area {
   padding: 0 3rem 4rem;
-}
+} */
 </style>

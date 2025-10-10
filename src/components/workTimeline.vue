@@ -13,6 +13,8 @@ const props = defineProps({
     type: String,
     default: "var(--color-primary)",
   },
+  isFirst: Boolean,
+  isLast: Boolean,
 })
 
 // refs y estados
@@ -63,7 +65,7 @@ onMounted(async () => {
         <!-- Línea principal -->
         <line
           x1="20"
-          y1="0"
+          y1="-10"
           x2="20"
           :y2="height"
           stroke="var(--color-secondary)"
@@ -71,7 +73,7 @@ onMounted(async () => {
           stroke-linecap="round"
         />
 
-        <!-- Rama principal (bottom → top) -->
+        <!-- Nueva Rama (nace de la principal (bottom → top) -->
         <path
           :d="`
             M20,${height - 10}
@@ -155,8 +157,14 @@ onMounted(async () => {
       </svg>
     </div>
 
-    <!-- Contenido textual -->
-    <div class="work-item">
+    <!-- Contenido textual 
+    class="work-item"
+     -->
+    <div :class="[
+      'work-item', 
+      { 'mt-2': isFirst, 'mb-1': isLast }
+    ]"
+    >
       <div class="item-title">
         <h3>{{ role }} - {{ company }}</h3>
         <h5>{{ duration }}</h5>
@@ -198,7 +206,8 @@ onMounted(async () => {
 <style scoped>
 .item {
   display: grid;
-  grid-template-columns: minmax(120px, 25%) 1fr;
+  /* grid-template-columns: minmax(120px, 25%) 1fr; */
+  grid-template-columns: minmax(100px, 20%) 1fr;
   column-gap: 1rem;
   align-items: start;
   position: relative;

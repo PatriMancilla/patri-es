@@ -13,7 +13,7 @@ const branchColors = ["#00BFA6", "#FF7B00", "#004CFF", "#FF0059"]
 <template>
   <div class="timeline">
     <!-- línea principal continua -->
-    <svg class="main-line" xmlns="http://www.w3.org/2000/svg">
+    <!-- <svg class="main-line" xmlns="http://www.w3.org/2000/svg">
       <line
         x1="20"
         y1="0"
@@ -23,7 +23,7 @@ const branchColors = ["#00BFA6", "#FF7B00", "#004CFF", "#FF0059"]
         stroke-width="4"
         stroke-linecap="round"
       />
-    </svg>
+    </svg> -->
 
     <!-- experiencia -->
     <div class="timeline-section">
@@ -39,6 +39,8 @@ const branchColors = ["#00BFA6", "#FF7B00", "#004CFF", "#FF0059"]
         :responsibilities="item.responsibilities"
         :branchColor="branchColors[index % branchColors.length]"
         :index="index"
+        :is-first="index === 0"
+        :is-last="index === experience.length - 1"
       />
     </div>
 
@@ -54,6 +56,8 @@ const branchColors = ["#00BFA6", "#FF7B00", "#004CFF", "#FF0059"]
         :current="item.current"
         :branchColor="branchColors[(index + 2) % branchColors.length]"
         :index="experience.length + index"
+        :is-first="index === 0"
+        :is-last="index === educationItems.length - 1"
       />
     </div>
   </div>
@@ -64,14 +68,14 @@ const branchColors = ["#00BFA6", "#FF7B00", "#004CFF", "#FF0059"]
   position: relative;
   display: flex;
   flex-direction: column;
-  gap: 3rem;
+  /* gap: 3rem; */
   overflow: visible;
 }
 
 /* línea principal */
 .main-line {
   position: absolute;
-  left: 40px;
+  /* left: 40px; */
   top: 0;
   width: 40px;
   height: 100%;
@@ -81,18 +85,20 @@ const branchColors = ["#00BFA6", "#FF7B00", "#004CFF", "#FF0059"]
 
 .timeline-section {
   position: relative;
-  padding-left: 80px;
+  /* padding-left: 80px; */
   z-index: 1;
 }
 
 .timeline-title {
   font-weight: bold;
   color: var(--color-primary);
-  margin-bottom: 1rem;
-  position: relative;
+  /* margin-bottom: 1rem;
+  position: relative; */
+  padding-left: 7rem;
+  margin-bottom: -1rem;
 }
 
-.timeline-title::before {
+/* .timeline-title::before {
   content: "";
   position: absolute;
   left: -60px;
@@ -101,5 +107,5 @@ const branchColors = ["#00BFA6", "#FF7B00", "#004CFF", "#FF0059"]
   height: 10px;
   background: var(--color-primary);
   border-radius: 50%;
-}
+} */
 </style>
