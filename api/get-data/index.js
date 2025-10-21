@@ -2,7 +2,7 @@
 module.exports = async function (context, req) {
   context.res = {
     status: 200,
-    body: { message: "✅ API funcionando correctamente desde Azure Static Web App" }
+    body: { message: "✅ API of Azure Static Web App to get data" }
   };
 };
 
