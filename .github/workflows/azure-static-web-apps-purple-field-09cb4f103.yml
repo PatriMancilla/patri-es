@@ -8,7 +8,7 @@ on:
   workflow_dispatch:  # Allow manual runs
 
 jobs:
-  # 🧪 1️⃣ Validate build (runs for PRs, not merged yet)
+  # 1️⃣ Validate build (runs for PRs, not merged yet)
   validate_build_job:
     if: github.event.action != 'closed'
     runs-on: ubuntu-latest
@@ -18,16 +18,16 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: 🧩 Install dependencies
+      - name: Install dependencies
         run: npm ci
 
-      - name: ⚙️ Build project
+      - name: Build project
         run: npm run build
 
       - name: ✅ Verify output directory
         run: test -d dist || (echo "⚠️ The 'dist' folder was not generated" && exit 1)
 
-  # 🚀 2️⃣ Build & deploy (runs only when PR is merged or manually triggered)
+  # 2️⃣ Build & deploy (runs only when PR is merged or manually triggered)
   build_and_deploy_job:
     if: github.event.pull_request.merged == true || github.event_name == 'workflow_dispatch'
     runs-on: ubuntu-latest
@@ -42,7 +42,7 @@ jobs:
           submodules: true
           lfs: false
 
-      - name: 🔐 Get ID Token
+      - name: Get ID Token
         id: idtoken
         uses: actions/github-script@v6
         with:
@@ -52,7 +52,7 @@ jobs:
             return token;
           result-encoding: string
 
-      - name: 🚀 Build and Deploy to Azure
+      - name: Build and Deploy to Azure
         id: builddeploy
         uses: Azure/static-web-apps-deploy@v1
         with:
