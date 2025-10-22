@@ -5,58 +5,52 @@ on:
     types: [opened, synchronize, reopened, closed]
     branches:
       - produccion
-  workflow_dispatch:
+  workflow_dispatch:  # Allow manual runs
 
 jobs:
-  # 🧪 1️⃣ Validate build before merging
+  # 🧪 1️⃣ Validate build (runs for PRs, not merged yet)
   validate_build_job:
     if: github.event.action != 'closed'
     runs-on: ubuntu-latest
-    name: 🧪 Validate build (no deploy)
+    name: Validate Build (no deploy)
+    permissions:
+      contents: read
     steps:
-      - name: 📥 Checkout repository
-        uses: actions/checkout@v3
+      - uses: actions/checkout@v3
 
-      - name: ⚙️ Install dependencies
+      - name: 🧩 Install dependencies
         run: npm ci
 
-      - name: 🏗️ Build project
+      - name: ⚙️ Build project
         run: npm run build
 
-      - name: 🔍 Verify build output
-        run: test -d dist || (echo "❌ 'dist' folder not found. Build failed." && exit 1)
+      - name: ✅ Verify output directory
+        run: test -d dist || (echo "⚠️ The 'dist' folder was not generated" && exit 1)
 
-      - name: ✅ Build validation completed
-        run: echo "✅ Build successful. Ready for review and merge."
-
-  # 🚀 2️⃣ Deploy to production (after PR merge)
+  # 🚀 2️⃣ Build & deploy (runs only when PR is merged or manually triggered)
   build_and_deploy_job:
     if: github.event.pull_request.merged == true || github.event_name == 'workflow_dispatch'
     runs-on: ubuntu-latest
-    name: 🚀 Deploy to Production
+    name: Build and Deploy Job
     permissions:
-       id-token: write
-       contents: read
-       pull-requests: write
+      id-token: write
+      contents: read
 
     steps:
-      - name: 📥 Checkout repository
-        uses: actions/checkout@v3
+      - uses: actions/checkout@v3
         with:
           submodules: true
           lfs: false
 
-      - name: 🔑 Install OIDC Client
-        run: npm install @actions/core@1.6.0 @actions/http-client
-
       - name: 🔐 Get ID Token
-        uses: actions/github-script@v6
         id: idtoken
+        uses: actions/github-script@v6
         with:
-           script: |
-               const core = require('@actions/core')
-               return await core.getIDToken()
-           result-encoding: string
+          script: |
+            const core = require('@actions/core');
+            const token = await core.getIDToken();
+            return token;
+          result-encoding: string
 
       - name: 🚀 Build and Deploy to Azure
         id: builddeploy
@@ -69,36 +63,17 @@ jobs:
           output_location: "dist"
           github_id_token: ${{ steps.idtoken.outputs.result }}
 
-      - name: 💬 Comment on Pull Request
-        if: github.event_name == 'pull_request'
-        uses: actions/github-script@v6
-        with:
-          script: |
-            // Attempt to detect deployed URL automatically
-            const deploymentUrl =
-              process.env.AZURE_STATIC_WEB_APPS_URL ||
-              'Deployment URL not available';
-            const message = `✅ **Deployment successful!**
-            \n🌐 **Live site:** ${deploymentUrl}
-            \n🕒 **Deployed at:** ${new Date().toISOString()}`;
-            github.rest.issues.createComment({
-              issue_number: context.issue.number,
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              body: message
-            });
+      - name: 🧪 Debug environment variables (temporary)
+        run: printenv | grep AZURE || echo "No AZURE_* env vars found"
 
-  # 🧹 3️⃣ Cleanup job (if PR closed without merge)
+  # 🧹 3️⃣ Close PR staging environments when PR closes without merge
   close_pull_request_job:
-    if: github.event_name == 'pull_request' && github.event.action == 'closed'
+    if: github.event_name == 'pull_request' && github.event.action == 'closed' && github.event.pull_request.merged != true
     runs-on: ubuntu-latest
-    name: 🧹 Close preview environment
+    name: Close Pull Request Job
     steps:
-      - name: 🧹 Remove preview environment
+      - name: 🧹 Close PR environment
         id: closepullrequest
         uses: Azure/static-web-apps-deploy@v1
         with:
           action: "close"
-
-      - name: ✅ Preview environment closed
-        run: echo "✅ Preview environment successfully removed."
