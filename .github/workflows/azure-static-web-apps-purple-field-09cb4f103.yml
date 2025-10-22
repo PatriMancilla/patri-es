@@ -13,6 +13,8 @@ jobs:
     if: github.event.action != 'closed'
     runs-on: ubuntu-latest
     name: Validate Build (no deploy)
+    permissions:
+      contents: read
     steps:
       - uses: actions/checkout@v3
 
@@ -25,30 +27,14 @@ jobs:
       - name: ✅ Verify output directory
         run: test -d dist || (echo "⚠️ The 'dist' folder was not generated" && exit 1)
 
-      - name: 🗨️ Comment on PR (Build passed)
-        if: success()
-        uses: marocchino/sticky-pull-request-comment@v2
-        with:
-          message: |
-            ✅ **Build validation succeeded!**
-            Everything looks good — you can safely merge this PR.
-
-      - name: 🗨️ Comment on PR (Build failed)
-        if: failure()
-        uses: marocchino/sticky-pull-request-comment@v2
-        with:
-          message: |
-            ❌ **Build validation failed!**
-            Please fix the errors before merging.
-
   # 🚀 2️⃣ Build & deploy (runs only when PR is merged or manually triggered)
   build_and_deploy_job:
     if: github.event.pull_request.merged == true || github.event_name == 'workflow_dispatch'
     runs-on: ubuntu-latest
     name: Build and Deploy Job
     permissions:
-       id-token: write
-       contents: read
+      id-token: write
+      contents: read
 
     steps:
       - uses: actions/checkout@v3
@@ -79,24 +65,6 @@ jobs:
 
       - name: 🧪 Debug environment variables (temporary)
         run: printenv | grep AZURE || echo "No AZURE_* env vars found"
-
-      - name: 🗨️ Comment on PR (Deployment success)
-        if: success()
-        uses: marocchino/sticky-pull-request-comment@v2
-        with:
-          message: |
-            🚀 **Deployment completed successfully!**
-            ✅ Your site is live at:
-            https://patri-es-cv.azurestaticapps.net  
-            *(replace with your custom domain if set)*
-
-      - name: 🗨️ Comment on PR (Deployment failed)
-        if: failure()
-        uses: marocchino/sticky-pull-request-comment@v2
-        with:
-          message: |
-            ❌ **Deployment failed!**
-            Please check the GitHub Actions logs for more details.
 
   # 🧹 3️⃣ Close PR staging environments when PR closes without merge
   close_pull_request_job:

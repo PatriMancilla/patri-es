@@ -68,7 +68,7 @@
                 "company": "Change Cener S.A.U",
                 "current": false,
                 "duration": "12/2021 – 07/2025",
-                "technologies": [".NET", "C#", "ASP.NET", "Visual Basic","SQL", "JavaScript"],
+                "technologies": [".NET Core", "ASP.NET", "C#", "Visual Basic", "SQL", "JavaScript"],
                 "responsibilities": [
                     "Desarrollo y mantenimiento de aplicaciones web con .NET, ASP.NET, C#, Visual Basic, Blazor, SQL y JavaScript.",
                     "Migración de aplicaciones heredadas a arquitecturas modernas.",
