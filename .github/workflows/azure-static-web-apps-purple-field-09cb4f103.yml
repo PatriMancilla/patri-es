@@ -1,30 +1,54 @@
 name: Azure Static Web Apps CI/CD
 
 on:
-  push:
-    branches:
-      - produccion
   pull_request:
     types: [opened, synchronize, reopened, closed]
     branches:
-      - produccion
+      - produccion           # Solo PRs cuyo destino sea 'produccion'
+  workflow_dispatch:          # Permite ejecutarlo manualmente desde GitHub Actions
 
 jobs:
-  build_and_deploy_job:
-    if: github.event_name == 'push' || (github.event_name == 'pull_request' && github.event.action != 'closed')
+  # 🧪 1️⃣ Job de validación (build check sin desplegar)
+  validate_build_job:
+    if: github.event.action != 'closed'  # Solo mientras el PR está abierto o actualizado
     runs-on: ubuntu-latest
-    name: Build and Deploy Job
+    name: 🧪 Validar compilación
+    steps:
+      - name: 📥 Clonando repositorio
+        uses: actions/checkout@v3
+
+      - name: ⚙️ Instalando dependencias
+        run: npm ci
+
+      - name: 🏗️ Compilando proyecto
+        run: npm run build
+
+      - name: 🔍 Verificando carpeta de salida
+        run: test -d dist || (echo "❌ No se generó la carpeta dist" && exit 1)
+
+      - name: ✅ Validación completada con éxito
+        run: echo "✅ Compilación correcta. Listo para revisión y merge."
+
+  # 🚀 2️⃣ Job de despliegue (solo cuando el PR se mergea)
+  build_and_deploy_job:
+    if: github.event.pull_request.merged == true || github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    name: 🚀 Desplegar a producción
     permissions:
        id-token: write
        contents: read
+
     steps:
-      - uses: actions/checkout@v3
+      - name: 📥 Clonando repositorio
+        uses: actions/checkout@v3
         with:
           submodules: true
           lfs: false
-      - name: Install OIDC Client from Core Package
+
+      - name: 🔑 Preparando autenticación OIDC
         run: npm install @actions/core@1.6.0 @actions/http-client
-      - name: Get Id Token
+
+      - name: 🔐 Obteniendo ID Token
         uses: actions/github-script@v6
         id: idtoken
         with:
@@ -32,27 +56,33 @@ jobs:
                const coredemo = require('@actions/core')
                return await coredemo.getIDToken()
            result-encoding: string
-      - name: Build And Deploy
+
+      - name: 🚀 Publicando en Azure Static Web Apps
         id: builddeploy
         uses: Azure/static-web-apps-deploy@v1
         with:
           azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN_PURPLE_FIELD_09CB4F103 }}
           action: "upload"
-          ###### Repository/Build Configurations - These values can be configured to match your app requirements. ######
-          # For more information regarding Static Web App workflow configurations, please visit: https://aka.ms/swaworkflowconfig
-          app_location: "/" # App source code path
-          api_location: "" # Api source code path - optional
-          output_location: "dist" # Built app content directory - optional
+          ###### Configuración del repositorio ######
+          app_location: "/"        # Carpeta raíz del proyecto Vue
+          api_location: "api"      # API de Azure Functions
+          output_location: "dist"  # Carpeta generada por Vite
           github_id_token: ${{ steps.idtoken.outputs.result }}
-          ###### End of Repository/Build Configurations ######
+          ###### Fin de configuración ######
 
+      - name: ✅ Despliegue completado
+        run: echo "✅ Aplicación y API desplegadas correctamente en Azure."
+
+  # 🧹 3️⃣ Job para cerrar entornos de staging
   close_pull_request_job:
     if: github.event_name == 'pull_request' && github.event.action == 'closed'
     runs-on: ubuntu-latest
-    name: Close Pull Request Job
+    name: 🧹 Cerrar entorno temporal
     steps:
-      - name: Close Pull Request
+      - name: 🧹 Cerrando entorno de revisión
         id: closepullrequest
         uses: Azure/static-web-apps-deploy@v1
         with:
           action: "close"
+      - name: ✅ Entorno temporal cerrado
+        run: echo "✅ Entorno de staging eliminado correctamente."
