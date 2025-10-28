@@ -1,27 +1,117 @@
-# Patri-es, created with Vue 3 + Vite
-This repository wil be used to create my public website as a CV and to practice with vue.js
+# Curriculum Flow - Vue 3 + Vite
 
-The projet was created into this folder using ``npm create vite@latest .`` adding a clear vue-vite project inside this folder. 
+![Curriculum Flow](./screenshot.png) <!-- optional, if you have a screenshot -->
 
--To use this project:
-1. Clone the repository
-2. run the comand ```npm run build```
-To view the project in a Localhost: 
-1. Change the data of the JSON
-2. run the comand ```npm run dev``` and click over the URL generated
+## Description
 
-## Publishing the sample version:
-For now, I'm starting to make it public with Azure options for creating a free static website using my personal domain. So, I need to run ``npm run build`` that create the **dist folder**. Azure will proccess then my publishing project as configured in the .yaml file.
+**Curriculum Flow** is an interactive web application built with **Vue 3** and **Vite**, designed to showcase a professional resume dynamically, simulating **Git branch flows**. Each work or education entry is represented as a branch off the main branch, allowing users to explore professional history visually and gamified.
 
-## Git Style for tech resume
-This branch version contains the layout to display my resume as if it were a GitHub history.
+The backend consists of a simple **API built with Azure Functions**, serving educational and work experience data.
 
-It displays a main branch originating from the personal data and detailing each job title and training as if they were child branches originating from and merging into main.
+---
 
-## Add API to get the current JSON information:
-I'm going to to create an API that will be brind the datas of the website. The API will be hosted in an "Azure Functions"environment that will use CosmosDB (NoSQL) to manage the data. Therefore, I'll take some architecture decisions for this environment. Following convention, I add this structure to my API:
-1. Add the "api" folder to the project root
-2. Add a folder by function "get-data" and "post-data"
-3. Each folder will be need a "index.js" file
+## Technologies Used
 
-If the changes are published, Azure will automatically detect the API and I can then connect to CosmosDB where the sensitive data will be securely stored.
+- **Frontend:**
+  - [Vue 3](https://v3.vuejs.org/)
+  - [Vite](https://vitejs.dev/)
+- **Backend:**
+  - [Azure Functions](https://learn.microsoft.com/azure/azure-functions/)
+- **Styling & Components:**
+  - CSS / Tailwind (as applicable)
+- **Data Management:**
+  - JSON served via Azure Functions
+
+---
+
+## Project Structure
+
+```
+src/
+│
+├─ views/
+│   └─ profile.vue       # Main profile view
+│
+├─ components/
+│   ├─ education.vue     # Education component
+│   └─ work.vue          # Work experience component
+│
+├─ assets/               # Images and styles
+└─ api/                  # Azure Functions backend
+```
+---
+
+## Features
+
+- Display work experience and education as Git-style branches.
+- Each "branch" shows details of an item (work or education).
+- Intuitive navigation between resume branches.
+- Data dynamically served via **Azure Functions API**.
+
+---
+
+## Installation & Running
+
+### Requirements
+
+- Node.js v18+
+- npm or yarn
+- Azure Functions Core Tools (optional, for backend development)
+
+### Clone the repository
+
+```bash
+git clone https://github.com/patriMancilla/curriculum-flow.git
+cd curriculum-flow
+```
+
+### Install dependencies
+
+```bash
+npm install
+# or
+yarn install
+```
+
+### Run the project in development
+
+```bash
+npm run dev
+# or
+yarn dev
+```
+
+The project will be available at [http://localhost:5173](http://localhost:5173) by default.
+
+### Run the API locally (optional)
+
+```bash
+cd api
+func start
+```
+
+---
+
+## Usage
+
+1. Navigate to the profile view.
+2. Explore main and secondary branches to view education and work experience.
+3. Each component (`Education` or `Work`) displays detailed information for each entry.
+
+---
+
+## Contributing
+
+Contributions are welcome! You can:
+
+- Open an issue for suggestions or bugs.
+- Create a pull request with improvements or new features.
+
+---
+
+
+## Contact
+
+- Author: Your Name
+- Email: patri.mancilla@gmail.com
+- GitHub: [patriMancilla](https://github.com/patriMancilla)
