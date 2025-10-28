@@ -40,7 +40,7 @@ onMounted(() => {
         </div>
         <div class="title">
           <h1>{{ datos.name }} {{ datos.surname }}</h1>
-          <h2>{{ datos.profession }}</h2>
+          <h2>{{ datos.profession }}.</h2>
         </div>
       </header>
 

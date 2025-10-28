@@ -19,7 +19,9 @@ app.http('httpData', {
       return { status: 200, jsonBody: items };
     } catch (err) {
       context.log.error('Error querying Cosmos DB', err);
-      return { status: 500, jsonBody: { error: err.message } };
+      return { body: JSON.stringify({ "text": `Hello, ${err.message}! from the API!` }) };
+
+      //return { status: 500, jsonBody: { error: err.message } };
     }
   }
 });
