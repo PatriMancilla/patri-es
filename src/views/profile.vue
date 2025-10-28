@@ -23,11 +23,11 @@ const loadData = async (language) => {
       //: '/api/httpData/1';
 
     const response = await fetch(apiUrl);
-      console.log(apiUrl);
+      //console.log(apiUrl);
     if (response.ok) {
       const data = await response.json();
       datos.value = data;
-      console.log(loading);
+      //console.log(loading);
     } else {
       console.error('Error al cargar los datos:', response.statusText);
     }
@@ -35,7 +35,7 @@ const loadData = async (language) => {
     console.error('Error al realizar la solicitud:', error);
   } finally {
     loading.value = false; // Finaliza el estado de carga
-    console.log(loading);
+    //console.log(loading);
   }
 };
 
