@@ -1,38 +1,84 @@
 <script setup>
 import { ref, onMounted } from "vue";
-import esData from '../data/profesional-profile-es.json'
-import enData from '../data/profesional-profile-en.json'
+// import esData from '../data/profesional-profile-es.json'
+// import enData from '../data/profesional-profile-en.json'
 import work from '../components/work.vue'
 import education from '../components/education.vue'
 
 
-const lang = ref("es");   // idioma por defecto
-const datos = ref(enData); // carga por defecto español
 
-// función para cargar JSON según idioma
+const lang = ref('es'); // Idioma por defecto
+const datos = ref(null); // Datos iniciales vacíos
+const loading = ref(true); // Estado de carga
+console.log(loading);
+// Función para cargar datos según el idioma
 const loadData = async (language) => {
-  datos.value = language === "es" ? esData : enData;
-  console.log(datos.value)
-}
+  try {
+    const startUrl = import.meta.env.MODE === 'development'
+    ? 'http://localhost:7071'
+    : `${window.location.origin}`;
+    const apiUrl = `${startUrl}/api/httpData?id=${language === 'es' ? 1 : 2}`;
+    //const apiUrl = import.meta.env.MODE === 'development'
+      //? 'http://localhost:7071/api/httpData'
+      //: '/api/httpData/1';
 
-// detectar idioma navegador
-const detectBrowserLanguage = () => {
-  const browserLang = navigator.language || navigator.userLanguage;
-  console.log(browserLang);
-  return browserLang.startsWith("es") ? "es" : "en";
+    const response = await fetch(apiUrl);
+      console.log(apiUrl);
+    if (response.ok) {
+      const data = await response.json();
+      datos.value = data;
+      console.log(loading);
+    } else {
+      console.error('Error al cargar los datos:', response.statusText);
+    }
+  } catch (error) {
+    console.error('Error al realizar la solicitud:', error);
+  } finally {
+    loading.value = false; // Finaliza el estado de carga
+    console.log(loading);
+  }
 };
 
+// Detectar el idioma del navegador
+const detectBrowserLanguage = () => {
+  const browserLang = navigator.language || navigator.userLanguage;
+  return browserLang.startsWith('es') ? 'es' : 'en';
+};
+
+// Cargar los datos al montar el componente
 onMounted(() => {
   const detected = detectBrowserLanguage();
   lang.value = detected;
   loadData(detected);
 });
 
+// const lang = ref("es");   // idioma por defecto
+// const datos = ref(enData); // carga por defecto español
+
+// // función para cargar JSON según idioma
+// const loadData = async (language) => {
+//   datos.value = language === "es" ? esData : enData;
+//   console.log(datos.value)
+// }
+
+// // detectar idioma navegador
+// const detectBrowserLanguage = () => {
+//   const browserLang = navigator.language || navigator.userLanguage;
+//   console.log(browserLang);
+//   return browserLang.startsWith("es") ? "es" : "en";
+// };
+
+// onMounted(() => {
+//   const detected = detectBrowserLanguage();
+//   lang.value = detected;
+//   loadData(detected);
+// });
+
 </script>
 
 <template>
   <div class="profile-page">
-    <div class="container">
+    <div class="container" v-if="!loading">
 
       <header>
         <div class="avatar">
