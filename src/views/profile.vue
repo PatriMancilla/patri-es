@@ -18,16 +18,13 @@ const loadData = async (language) => {
     ? 'http://localhost:7071'
     : `${window.location.origin}`;
     const apiUrl = `${startUrl}/api/httpData?id=${language === 'es' ? 1 : 2}`;
-    //const apiUrl = import.meta.env.MODE === 'development'
-      //? 'http://localhost:7071/api/httpData'
-      //: '/api/httpData/1';
 
     const response = await fetch(apiUrl);
-      console.log(apiUrl);
+      //console.log(apiUrl);
     if (response.ok) {
       const data = await response.json();
       datos.value = data;
-      console.log(loading);
+      //console.log(loading);
     } else {
       console.error('Error al cargar los datos:', response.statusText);
     }
@@ -35,7 +32,7 @@ const loadData = async (language) => {
     console.error('Error al realizar la solicitud:', error);
   } finally {
     loading.value = false; // Finaliza el estado de carga
-    console.log(loading);
+    //console.log(loading);
   }
 };
 
@@ -78,6 +75,29 @@ onMounted(() => {
 
 <template>
   <div class="profile-page">
+    <div class="snippet">
+      <div class="small">
+
+<!-- 
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <radialGradient id="a12" cx=".66" fx=".66" cy=".3125" fy=".3125" gradientTransform="scale(1.5)">
+    <stop offset="0" stop-color="#00ABAB"></stop>
+    <stop offset=".3" stop-color="#00ABAB" stop-opacity=".9"></stop>
+    <stop offset=".6" stop-color="#00ABAB" stop-opacity=".6"></stop>
+    <stop offset=".8" stop-color="#00ABAB" stop-opacity=".3"></stop>
+    <stop offset="1" stop-color="#00ABAB" stop-opacity="0"></stop>
+  </radialGradient>
+  <circle transform-origin="center" fill="none" stroke="url(#a12)" stroke-width="15" stroke-linecap="round" stroke-dasharray="200 1000" stroke-dashoffset="0" cx="100" cy="100" r="70"><animateTransform type="rotate" attributeName="transform" calcMode="spline" dur="2" values="360;0" keyTimes="0;1" keySplines="0 0 1 1" repeatCount="indefinite">
+  </animateTransform>
+</circle>
+  <circle transform-origin="center" fill="none" opacity=".2" stroke="#00ABAB" stroke-width="15" stroke-linecap="round" cx="100" cy="100" r="70">
+    </circle>
+  </svg> -->
+</div>
+
+
+
+  </div>
     <div class="container" v-if="!loading">
 
       <header>
@@ -92,18 +112,18 @@ onMounted(() => {
 
       <div class="experience">
         <h4 class="section-title">{{ datos.experience.title }}</h4>
-<work
-  v-for="(item, index) in datos.experience.items"
-  :key="index"
-  :role="item.role"
-  :company="item.company"
-  :duration="item.duration"
-  :current="item.current"
-  :technologies="item.technologies"
-  :responsibilities="item.responsibilities"
-  :branchColor="['#00BFA6', '#FF7B00', '#004CFF', '#FF0059'][index % 4]"
-  :index="index"
-/>
+        <work
+          v-for="(item, index) in datos.experience.items"
+          :key="index"
+          :role="item.role"
+          :company="item.company"
+          :duration="item.duration"
+          :current="item.current"
+          :technologies="item.technologies"
+          :responsibilities="item.responsibilities"
+          :branchColor="['#00BFA6', '#FF7B00', '#004CFF', '#FF0059'][index % 4]"
+          :index="index"
+        />
       
       <!-- <work v-for="(item, index) in datos.experience.items"
           :key="index"
@@ -131,6 +151,31 @@ onMounted(() => {
       </div>
 
     </div>
+    <div class="container" v-else>
+      <div class="snippet">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+          <radialGradient id="a12" cx=".6" fx=".6" cy=".325" fy=".325" gradientTransform="scale(1.5)">
+            <stop offset="0" stop-color="#00ABAB"></stop>
+            <stop offset=".3" stop-color="#00ABAB" stop-opacity=".8"></stop>
+            <!-- <stop offset=".5" stop-color="#00ABAB" stop-opacity=".5"></stop> -->
+            <stop offset=".8" stop-color="#00ABAB" stop-opacity=".3"></stop>
+            <stop offset="1" stop-color="#00ABAB" stop-opacity="0"></stop>
+            <stop offset="0" stop-color="#00ABAB" stop-opacity="0"></stop>
+          </radialGradient>
+          <circle transform-origin="center" fill="none" stroke="url(#a12)" stroke-width="15" stroke-linecap="round" 
+          stroke-dasharray="200 1000" stroke-dashoffset="0" cx="100" cy="100" r="70">
+            <animateTransform type="rotate" attributeName="transform" calcMode="spline" dur="4" values="360;0" 
+            keyTimes="0;1" keySplines="0 0 1 1" repeatCount="indefinite">
+          </animateTransform>
+        </circle>
+        <circle transform-origin="center" fill="none" opacity=".1" stroke="#00ABAB" 
+          stroke-width="15" stroke-linecap="round" cx="100" cy="100" r="70">
+          </circle>
+        </svg>
+  
+      </div>      
+    </div>
+
   </div>
 
 </template>
@@ -163,4 +208,13 @@ onMounted(() => {
   flex-direction: column;
   align-items: center;
 }
+
+.snippet{
+  display: block;
+  width: 80px;
+  height: 80px;
+
+}
+
+
 </style>
