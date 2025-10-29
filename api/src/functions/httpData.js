@@ -13,31 +13,60 @@ app.http('httpData', {
   methods: ['GET'],
   authLevel: 'anonymous',
   handler: async (request, context) => {
+    const id = request.params.id;
+
+    if (!id) {
+      return {
+        status: 400,
+        body: "Falta el parámetro 'id' en la ruta."
+      };
+    }
+
     try {
       const container = client.database(databaseId).container(containerId);
-      const { resources: items } = await container.items.query({ query: 'SELECT * FROM c' }).fetchAll();
-      return { status: 200, jsonBody: items };
-    } catch (err) {
-      context.log.error('Error querying Cosmos DB', err);
-      return { body: JSON.stringify({ "text": `Hello, ${err.message}! from the API!` }) };
+      const querySpec = {
+        query: 'SELECT * FROM c WHERE c.id = @id',
+        parameters: [{ name: '@id', value: id }]
+      };
+      const { resources: items } = await container.items.query(querySpec).fetchAll();
+      const item = items[0] || null;
 
-      //return { status: 500, jsonBody: { error: err.message } };
+      if (!item) {
+        return {
+          status: 404,
+          body: `No se encontró el ítem con id: ${id}`
+        };
+      }
+
+      return {
+        status: 200,
+        jsonBody: item.value
+
+      };
+    } catch (err) {
+      context.log.error('Error al consultar Cosmos DB', err);
+      return {
+        status: 500,
+        body: { error: err.message }
+      };
     }
   }
 });
 
 
-// const { app } = require('@azure/functions');
-
 // app.http('httpData', {
-//     methods: ['GET', 'POST'],
-//     authLevel: 'anonymous',
-//     handler: async (request, context) => {
-//         context.log(`Http function processed request for url "${request.url}"`);
+//   methods: ['GET'],
+//   authLevel: 'anonymous',
+//   handler: async (request, context) => {
+//     try {
+//       const container = client.database(databaseId).container(containerId);
+//       const { resources: items } = await container.items.query({ query: 'SELECT * FROM c' }).fetchAll();
+//       return { status: 200, jsonBody: items };
+//     } catch (err) {
+//       context.log.error('Error querying Cosmos DB', err);
+//       return { body: JSON.stringify({ "text": `Hello, ${err.message}! from the API!` }) };
 
-//         const name = request.query.get('name') || await request.text() || 'world';
-//        return { body: JSON.stringify({ "text": `Hello, ${name}! from the API!` }) };
-
+//       //return { status: 500, jsonBody: { error: err.message } };
 //     }
+//   }
 // });
-
