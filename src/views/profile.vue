@@ -124,23 +124,7 @@ onMounted(() => {
           :branchColor="['#00BFA6', '#FF7B00', '#004CFF', '#FF0059'][index % 4]"
           :index="index"
         />
-      
-      <!-- <work v-for="(item, index) in datos.experience.items"
-          :key="index"
-          :index="index"
-          :role="item.role"
-          :company="item.company"
-          :duration="item.duration"
-          :current="item.current"
-          :technologies="item.technologies"
-          :responsibilities="item.responsibilities"
-        />
-      
-        -->
-      
       </div>
-
-
 
       <div class="education">
         <h4 class="section-title">{{ datos.education.title }}</h4>
