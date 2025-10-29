@@ -1,0 +1,196 @@
+{
+    "template": "pochi",
+    "name": "Patricia",
+    "surname": "Mancilla",
+    "profession": "Programadora FullStack | Especialista en .NET y Front-End",
+    
+     "contactInformation": {
+        "title": "skills",
+        "items" : [
+            {
+                "location": "España",
+                "email": "email@email.com",
+                "phone": "600000000",
+                "websiteLink": "https://www.patri.es",
+                "websiteText" : "patri.es",
+                "linkedin": "www.linkedin.com/in/patricia-mancilla"
+            }
+        ]
+    },
+    
+    "aboutMe": "Apasionada por la tecnología y el desarrollo web, con experiencia en proyectos tanto frontend como backend. Me encanta aprender nuevas tecnologías y enfrentarme a desafíos técnicos. Destaco por mi capacidad de adaptación, paciencia y habilidad para trabajar en equipo con distintos perfiles.",
+    
+    "softSkills": {
+        "title": "Cualidades",
+        "items" : [
+            ".NET",
+            "PHP"
+        ]
+    }, 
+
+    "skills": {
+        "title": "skills",
+        "items" : [
+            ".NET",
+            "C#",
+            "JavaScript",
+            "Vue.js",
+            "HTML5",
+            "CSS3",
+            "SQL",
+            "Git",
+            "PHP"
+        ]
+    }, 
+    
+    "education": {
+        "title": "Formación",
+        "items" : [
+            {
+                "degree": "Técnico Superior en Administración de Sistemas Informáticos en Red",
+                "institution": "I.E.S. Los Montecillos, Málaga",
+                "year": "2016",
+                "current":false,
+                "description": ""
+            },
+            {
+                "degree": "Licenciatura en Bellas Artes",
+                "institution": "Universidad de Granada",
+                "year": "2010",
+                "current":false,
+                "description": ""
+            }
+        ]
+    },
+
+    "experience": {
+        "title": "Experiencia profesional",
+        "items" : [
+            {
+                "role": "FullStack Developer",
+                "company": "Club Center S.A",
+                "current": false,
+                "duration": "12/2021 – 07/2025",
+                "technologies": [".NET", "C#", "ASP.NET", "Visual Basic","SQL", "JavaScript"],
+                "responsibilities": [ 
+                    { 
+                        "task": [
+                            {
+                                "type": "list",
+                                "description" : [
+                                "Colaboración con equipos de diseño y clientes para mejorar la experiencia de usuario.",
+                                "Desarrollo y mantenimiento de aplicaciones web con .NET, C#, Visual Basic, SQL y JavaScript.",
+                                "Migración de aplicaciones heredadas a arquitecturas modernas.",
+                                "Integración de APIs externas (OCR y terceros)."
+                                ]
+                            },
+                            {
+                                "type": "paragraph",
+                                "description" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. "
+                            }
+                                
+                        ]
+
+                    }
+                ]
+            },
+            {
+                "role": "Front-End Developer",
+                "company": "Primor",
+                "current": false,
+                "duration": "06/2021 – 12/2021",
+                "technologies": ["Prestashop", "HTML", "JavaScript", "jQuery", "Bootstrap", "SASS"],
+                "responsibilities": [ 
+                    { 
+                        "task": [
+                            {
+                                "type": "list",
+                                "description" : [
+                                    "Desarrollo Front-End en Prestashop.",
+                                    "Implementación de interfaces responsive y optimización de usabilidad."
+                                ]
+                            },
+                            {
+                                "type": "paragraph",
+                                "description" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. "
+                            }
+                                
+                        ]
+
+                    }
+                ]
+                
+            },
+            {
+                "role": "FullStack Developer",
+                "company": "Global University Systems",
+                "current": false,
+                "duration": "08/2017 – 10/2020",
+                "technologies": ["ASP.NET", "C#", "Umbraco", "Azure DevOps", "HTML", "CSS", "JavaScript"],
+                "responsibilities": [
+                { 
+                        "task": [
+                            {
+                                "type": "list",
+                                "description" : 
+                                    [
+                                        "Mantenimiento y creación de webs con CMS Umbraco.",
+                                        "Gestión de proyectos en Azure DevOps bajo metodología Agile.",
+                                        "Colaboración con Marketing y SEO para optimizar el rendimiento web."
+                                    ]
+                            },
+                            {
+                                "type": "paragraph",
+                                "description" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. "
+                            }
+                                
+                        ]
+
+                    }
+                ]
+            },
+            {
+                "role": "Web Developer y Diseñador Gráfico",
+                "company": "N.C.S Solutions",
+                "current": false,
+                "duration": "06/2016 - 07/2017",
+                "technologies": ["PHP", "WordPress", "HTML", "CSS", "JavaScript", "JQuery", "Photoshop", "Illustrator"],
+                "responsibilities": [ 
+                    { 
+                        "task": [
+                            {
+                                "type": "list",
+                                "description" : [
+                                    "Creación de páginas webs con WordPress. ",
+                                    "Trabajos de Diseño Web",
+                                    "Trabajos de Diseño Gráfico y Branding"
+                                ]
+                            },
+                            {
+                                "type": "paragraph",
+                                "description" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. "
+                            }
+                                
+                        ]
+
+                    }
+                ]
+               
+            }
+        ]
+    }, 
+    
+    "languages":  {
+        "title": "Idiomas",
+        "items" : [
+            {
+                "language": "Español",
+                "level": "Nativo"
+            },
+            {
+                "language": "Inglés",
+                "level": "Intermedio"
+            }
+        ]
+    }
+}
