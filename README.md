@@ -1,10 +1,13 @@
 # Curriculum Flow - Vue 3 + Vite
 
-![Curriculum Flow](./screenshot.png) <!-- optional, if you have a screenshot -->
+<div align="center">
+
+![Curriculum Flow](/public/screenshotFlow.png) 
+</div><!-- optional, if you have a screenshot -->
 
 ## Description
 
-**Curriculum Flow** is an interactive web application built with **Vue 3** and **Vite**, designed to showcase a professional resume dynamically, simulating **Git branch flows**. Each work or education entry is represented as a branch off the main branch, allowing users to explore professional history visually and gamified.
+**Curriculum Flow** is an interactive web application built with **Vue 3** and **Vite**, designed to showcase a professional resume dynamically, simulating **Git branch flows**. Each work entry is represented as a branch off the main branch, allowing users to explore professional history visually and gamified.
 
 The backend consists of a simple **API built with Azure Functions**, serving educational and work experience data.
 
@@ -112,6 +115,7 @@ Contributions are welcome! You can:
 
 ## Contact
 
-- Author: Your Name
+- Author: Patricia Mancilla
 - Email: patri.mancilla@gmail.com
+- Website: [patri.es](https://www.patri.es)
 - GitHub: [patriMancilla](https://github.com/patriMancilla)
