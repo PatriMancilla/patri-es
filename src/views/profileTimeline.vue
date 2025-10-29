@@ -1,23 +1,51 @@
 <script setup>
 import { ref, onMounted } from "vue"
-import esData from "../data/profile-es.json"
-import enData from "../data/profile-en.json"
+//import esData from "../data/profile-es.json"
+//import enData from "../data/profile-en.json"
 import GitTimeline from "../components/gitTimeline.vue"
 
-const datos = ref(esData)
 const lang = ref("es")
 const isDark = ref(false)
+//const datos = ref(esData)
+const datos = ref(null); 
+const loading = ref(true); 
+
+const loadData = async (language) => {
+  try {
+    const startUrl = import.meta.env.MODE === 'development'
+    ? 'http://localhost:7071'
+    : `${window.location.origin}`;
+    const apiUrl = `${startUrl}/api/httpData?id=${language === 'es' ? 1 : 2}`;
+
+    const response = await fetch(apiUrl);
+      //console.log(apiUrl);
+    if (response.ok) {
+      const data = await response.json();
+      datos.value = data;
+      //console.log(loading);
+    } else {
+      console.error('Error al cargar los datos:', response.statusText);
+    }
+  } catch (error) {
+    console.error('Error al realizar la solicitud:', error);
+  } finally {
+    loading.value = false; // Finaliza el estado de carga
+    //console.log(loading);
+  }
+};
+
+
 
 // ─── Idioma ───────────────────────────────
-const loadData = (language) => {
-  datos.value = language === "es" ? esData : enData
-  lang.value = language
-  localStorage.setItem("lang", language)
-}
+// const loadData = (language) => {
+//   datos.value = language === "es" ? esData : enData
+//   lang.value = language
+//   localStorage.setItem("lang", language)
+// }
 
 const toggleLanguage = () => {
-  const newLang = lang.value === "es" ? "en" : "es"
-  loadData(newLang)
+  const newLanguage = language.value === "es" ? "en" : "es"
+  loadData(newLanguage)
 }
 
 // ─── Tema ─────────────────────────────────
@@ -43,13 +71,23 @@ const detectPreferences = () => {
   document.documentElement.classList.toggle("dark", isDark.value)
 }
 
+// Cargar los datos al montar el componente
 onMounted(() => {
-  detectPreferences()
-})
+  //const detected = detectBrowserLanguage();
+  const detected = detectPreferences();
+
+  lang.value = detected;
+  loadData(detected);
+});
+
+// onMounted(() => {
+//   detectPreferences()
+// })
+
 </script>
 
 <template>
-  <div class="profile-page">
+  <div class="profile-page"  v-if="!loading">
     <!-- Header superior con botones -->
     <header class="top-header">
       <div class="controls">
@@ -117,6 +155,31 @@ onMounted(() => {
       />
     </main>
   </div>
+  <div class="profile-page"  v-else>
+    <div class="snippet">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+          <radialGradient id="a12" cx=".6" fx=".6" cy=".325" fy=".325" gradientTransform="scale(1.5)">
+            <stop offset="0" stop-color="#00ABAB"></stop>
+            <stop offset=".3" stop-color="#00ABAB" stop-opacity=".8"></stop>
+            <!-- <stop offset=".5" stop-color="#00ABAB" stop-opacity=".5"></stop> -->
+            <stop offset=".8" stop-color="#00ABAB" stop-opacity=".3"></stop>
+            <stop offset="1" stop-color="#00ABAB" stop-opacity="0"></stop>
+            <stop offset="0" stop-color="#00ABAB" stop-opacity="0"></stop>
+          </radialGradient>
+          <circle transform-origin="center" fill="none" stroke="url(#a12)" stroke-width="15" stroke-linecap="round" 
+          stroke-dasharray="200 1000" stroke-dashoffset="0" cx="100" cy="100" r="70">
+            <animateTransform type="rotate" attributeName="transform" calcMode="spline" dur="4" values="360;0" 
+            keyTimes="0;1" keySplines="0 0 1 1" repeatCount="indefinite">
+          </animateTransform>
+        </circle>
+        <circle transform-origin="center" fill="none" opacity=".1" stroke="#00ABAB" 
+          stroke-width="15" stroke-linecap="round" cx="100" cy="100" r="70">
+          </circle>
+        </svg>
+  
+      </div>
+</div>
+
 </template>
 
 <style scoped>
@@ -207,6 +270,13 @@ onMounted(() => {
   font-size: 1.2rem;
   margin: 0.3rem 0 0 0;
   color: var(--color-secondary);
+}
+
+.snippet{
+  display: block;
+  width: 80px;
+  height: 80px;
+
 }
 
 /* timeline */

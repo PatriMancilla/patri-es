@@ -5,12 +5,9 @@ import { ref, onMounted } from "vue";
 import work from '../components/work.vue'
 import education from '../components/education.vue'
 
-
-
 const lang = ref('es'); // Idioma por defecto
 const datos = ref(null); // Datos iniciales vacíos
 const loading = ref(true); // Estado de carga
-console.log(loading);
 // Función para cargar datos según el idioma
 const loadData = async (language) => {
   try {
